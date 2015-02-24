@@ -1,0 +1,54 @@
+Before running anything, Oscar requires virtualenv and virtualenvwrapper to be installed. To do this:
+
+1. run pip install virtualenv
+
+2. run pip install virtualenvwrapper
+
+3. Open .basrc (or whatever your shell startup file is, i.e .profile, etc) in a text editor (located in source "~/.bashrc")
+
+4. Add the following three lines to the shell startup file:
+	export WORKON_HOME=$HOME/.virtualenvs
+	export PROJECT_HOME=$HOME/Devel
+	source /usr/local/bin/virtualenvwrapper.sh
+
+5. Navigate to the Esmeer-Oscar folder
+
+6. run mkvirtualenv oscar
+
+7. run workon oscar
+
+Now that virtualenv has been set up, make sure that your database is completely empty and named 'production' with no username or password. To ensure this, do the following:
+
+1. run mysql
+
+2. Enter drop database production;
+
+3. Finally, enter create database production;
+
+If all the steps were successful thusfar:
+
+1. Navigate to the EsmeerOscar folder and run python manage.py migrate
+
+2. Now run the server (python manage.py runserver)
+
+Note: If you have issues with the migration concerning the mysqldb database, it's because virtualenv has no idea what you had installed on your system prior apparently. I also had issues installing the python mysql package via pip. Here's how I fixed it:
+
+1. apt-get install libmysqlclient-dev
+
+2. pip install mysql-python
+
+Awesome. So we have the site up now. It's beautiful, right? RIGHT?
+
+...Ahem. Now to populate the database with the countries of the world...
+
+1. pip install pycountry (if you don't already have it)
+
+Note: Before running this next step, it's important to note that, by default, the next command will mark all countries as shipping countries. If you call it with the --no-shipping option, it will not mark any of them as shipping so it will need to be marked manually.
+
+2. python manage.py oscar_populate_countries
+
+All of the necessary steps to start this from scratch (and what I personally used to set this up) can be found here:
+
+http://django-oscar.readthedocs.org/en/latest/internals/getting_started.html
+
+Have a nice freakin' day. :)
