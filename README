@@ -1,5 +1,7 @@
 Before running anything, Oscar requires virtualenv and virtualenvwrapper to be installed. To do this:
 
+0. run pip install django-oscar
+
 1. run pip install virtualenv
 
 2. run pip install virtualenvwrapper
@@ -48,6 +50,9 @@ Note: Before running this next step, it's important to note that, by default, th
 2. python manage.py oscar_populate_countries
 
 All of the necessary steps to start this from scratch (and what I personally used to set this up) can be found here:
+
+run pip install pillow
+
 
 http://django-oscar.readthedocs.org/en/latest/internals/getting_started.html
 
