@@ -53,6 +53,8 @@ All of the necessary steps to start this from scratch (and what I personally use
 
 run pip install pillow
 
+sudo apt-get install libjpeg-dev
+
 
 http://django-oscar.readthedocs.org/en/latest/internals/getting_started.html
 
