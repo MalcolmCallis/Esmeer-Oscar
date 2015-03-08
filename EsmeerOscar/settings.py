@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from oscar.defaults import *
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'compressor',
-] + get_core_apps()
+] + get_core_apps(['EsmeerOscar.dashboard'])
 
 SITE_ID = 1
 
@@ -122,6 +123,9 @@ TEMPLATE_DIRS = (
 	location('templates'),
 	OSCAR_MAIN_TEMPLATE_DIR,
 )
+
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
