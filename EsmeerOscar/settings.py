@@ -31,6 +31,19 @@ ALLOWED_HOSTS = []
 
 from oscar import get_core_apps
 
+
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
+location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', x)
+TEMPLATE_DIRS = (
+    location('templates'),
+)
+
 # Application definition
 
 INSTALLED_APPS = [
