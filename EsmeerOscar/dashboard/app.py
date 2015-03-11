@@ -1,10 +1,9 @@
 from django.conf.urls import url, include
-
 from oscar.core.application import Application
 from oscar.core.loading import get_class
+from oscar.apps.dashboard.app import DashboardApplication as EsmeerDashboard
 
-
-class DashboardApplication(Application):
+class DashboardApplication(EsmeerDashboard):
     name = 'dashboard'
     permissions_map = {
         'index': (['is_staff'], ['partner.dashboard_access']),
