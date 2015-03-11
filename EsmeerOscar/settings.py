@@ -113,6 +113,12 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Cancelled': (),
 }
 
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
 
 location = lambda x: os.path.join(
