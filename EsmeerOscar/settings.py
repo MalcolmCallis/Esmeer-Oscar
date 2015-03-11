@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'compressor',
-] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping'])
+] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue'])
 
 SITE_ID = 1
 
@@ -153,3 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Make the default Currency USD
+
+OSCAR_DEFAULT_CURRENCY = "USD"
