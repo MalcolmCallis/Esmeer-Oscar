@@ -3,6 +3,9 @@ from oscar.app import application
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from oscar.app import shop
+
+from paypal.express.dashboard.app import application
 
 
 urlpatterns = [
@@ -11,7 +14,9 @@ urlpatterns = [
     # The Django admin is not officially supported; expect breakage.
     # Nonetheless, it's often useful for debugging.
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^checkout/paypal/', include('paypal.express.urls')),
+    url(r'^dashboard/paypal/express/', include(application.urls)),
+    url(r'', include(shop.urls)),
     url(r'', include(application.urls)),
 ]
 

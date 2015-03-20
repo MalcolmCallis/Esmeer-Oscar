@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'compressor',
-] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue'])
+    'paypal',
+] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout'])
 
 SITE_ID = 1
 
@@ -157,3 +158,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Make the default Currency USD
 
 OSCAR_DEFAULT_CURRENCY = "USD"
+
+PAYPAL_API_USERNAME = 'EsmeerTest-facilitator_api1.gmail.com'
+
+PAYPAL_API_PASSWORD = '7F3MNL8G3WCYA24C'
+
+PAYPAL_API_SIGNATURE = 'AjdGQ9pJRqcR0pPclFa0P8Dl3Y7qAppgL3vOuFE5umXR.aG76-4XzJ5c'
+
+from django.utils.translation import ugettext_lazy as _
+OSCAR_DASHBOARD_NAVIGATION.append(
+    {
+        'label': _('PayPal'),
+        'icon': 'icon-globe',
+        'children': [
+            {
+                'label': _('Express transactions'),
+                'url_name': 'paypal-express-list',
+            },
+        ]
+    })
+
+PAYPAL_CURRENCY = "USD"
