@@ -162,7 +162,7 @@ OSCAR_DEFAULT_CURRENCY = "USD"
 PAYPAL_API_USERNAME = 'EsmeerTest-facilitator_api1.gmail.com'
 
 PAYPAL_API_PASSWORD = '7F3MNL8G3WCYA24C'
-
+PAYPAL_CALLBACK_HTTPS = False
 PAYPAL_API_SIGNATURE = 'AjdGQ9pJRqcR0pPclFa0P8Dl3Y7qAppgL3vOuFE5umXR.aG76-4XzJ5c'
 
 from django.utils.translation import ugettext_lazy as _
