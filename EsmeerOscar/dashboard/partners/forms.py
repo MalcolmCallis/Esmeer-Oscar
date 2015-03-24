@@ -7,6 +7,8 @@ from oscar.core.compat import existing_user_fields, get_user_model
 from oscar.apps.customer.forms import EmailUserCreationForm
 from oscar.core.validators import password_validators
 
+from django.forms.models import inlineformset_factory
+
 User = get_user_model()
 Partner = get_model('partner', 'Partner')
 PartnerAddress = get_model('partner', 'PartnerAddress')
@@ -18,9 +20,27 @@ class PartnerSearchForm(forms.Form):
 
 
 class PartnerCreateForm(forms.ModelForm):
+  
     class Meta:
         model = Partner
         fields = ('name','users',)
+
+
+
+class PartnerAddressForm(forms.ModelForm):
+
+    class Meta:
+        model = PartnerAddress
+        fields = ('line1', 'line2', 'line3', 'line4',
+                  'state', 'postcode', 'country')
+
+BasePartnerAddressFormSet = inlineformset_factory(
+    Partner, PartnerAddress, form=PartnerAddressForm, extra=1)
+
+class PartnerAddressFormSet(BasePartnerAddressFormSet):
+
+  def __init__(self,*args, **kwargs):
+      super(PartnerAddressFormSet,self).__init__(*args, **kwargs)
 
 ROLE_CHOICES = (
     ('staff', _('Full dashboard access')),
@@ -118,11 +138,3 @@ class UserEmailForm(forms.Form):
         label=_("Email address"), max_length=100)
 
 
-class PartnerAddressForm(forms.ModelForm):
-    name = forms.CharField(
-        required=False, label=pgettext_lazy(u"Partner's name", u"Name"))
-
-    class Meta:
-        fields = ('name', 'line1', 'line2', 'line3', 'line4',
-                  'state', 'postcode', 'country')
-        model = PartnerAddress
