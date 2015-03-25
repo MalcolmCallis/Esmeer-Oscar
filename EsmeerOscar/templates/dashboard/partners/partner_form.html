@@ -78,16 +78,16 @@
                             <div class="well product-details">
                                 {% block partner_details_content %}
                                    <span class="error-block">{{ form.non_field_errors }}</span>
+                                   {% for field in form.hidden_fields %}
+				   {{ field }}
+				   {% endfor %}
 
-                                    {% for field in form.hidden_fields %}
-                                        {{ field }}
-                                    {% endfor %}
-
-                                    {% for field in form.visible_fields %}
-                                        {% if 'attr' not in field.id_for_label %}
-                                            {% include 'partials/form_field.html' with field=field %}
-                                        {% endif %}
-                                    {% endfor %}
+				   {% for field in form.visible_fields %}
+				   
+				   {% if 'attr' not in field.id_for_label %}
+   				   {% include 'partials/form_field.html' with field=field %}
+				   {% endif %}
+				   {% endfor %}
                                 {% endblock partner_details_content %}
                             </div>
                         </div>
