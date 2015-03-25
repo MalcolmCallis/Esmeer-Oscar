@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.models import Permission
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.views import generic
@@ -83,6 +84,28 @@ class PartnerCreateView(generic.CreateView):
                          _("Partner '%s' was created successfully.") %
                          self.object.name)
         return reverse('dashboard:partner-list')
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        address_form = PartnerAddressFormSet(self.request.POST)
+        if(form.is_valid() and address_form.is_valid()):
+            return self.form_valid(form, address_form)
+        else:
+            return self.form_invalid(form, address_form)
+
+    def form_valid(self, form, address_form):
+        self.object = form.save()
+        address_form.instance = self.object
+        address_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, address_form):
+        return self.render_to_response(
+            self.get_context_data(form=form,
+                                  address_form=address_form,
+                                  ))
 
 
 class PartnerManageView(generic.UpdateView):
