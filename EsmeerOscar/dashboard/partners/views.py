@@ -59,8 +59,9 @@ class PartnerListView(generic.ListView):
 
 
 class PartnerCreateView(generic.CreateView):
-    model = Partner
     template_name = 'dashboard/partners/partner_form.html'
+    model = Partner
+    context_object_name = 'partner'
     form_class = PartnerCreateForm
     success_url = reverse_lazy('dashboard:partner-list')
     address_formset = PartnerAddressFormSet
@@ -72,8 +73,11 @@ class PartnerCreateView(generic.CreateView):
     def get_context_data(self, **kwargs):
         ctx = super(PartnerCreateView, self).get_context_data(**kwargs)
         ctx['title'] = _('Create new partner')
+        for ctx_name, formset_class in self.formsets.items():
+            if ctx_name not in ctx:
+                ctx[ctx_name] = formset_class()
         return ctx
-
+        
     def get_success_url(self):
         messages.success(self.request,
                          _("Partner '%s' was created successfully.") %
