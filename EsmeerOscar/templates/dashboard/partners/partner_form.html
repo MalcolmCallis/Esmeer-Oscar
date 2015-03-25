@@ -96,19 +96,17 @@
                     {% block partner_address %}
                         <div class="tab-pane" id="partner_address">
                             {% block partner_address_content %}
-                                <table class="table table-striped table-bordered form-inline">
-                                    <caption>{% trans "Address" %}</caption>
+			        <div class="table-header">
+                                    <h3>{% trans "Address" %}</h3>
+				</div>
                                     {{ address_formset.management_form }}
                                     {{ address_formset.non_form_errors }}
+
                                     {% for address_form in address_formset %}
-                                    <tr>
-                                        <td>
-                                            <span class="error-block">hee</span>
-                                            {% include "partials/form_fields_inline.html" with form=address_form %}
-                                        </td>
-                                    </tr>
+				    <div class="well">
+                                        {% include "partials/form_fields_inline.html" with form=address_form %}
+				    </div>
                                     {% endfor %}
-                                </table>
                             {% endblock partner_address_content %}
                         </div>
                     {% endblock partner_address %}

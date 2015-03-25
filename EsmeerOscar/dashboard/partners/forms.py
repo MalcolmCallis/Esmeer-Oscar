@@ -31,8 +31,8 @@ class PartnerAddressForm(forms.ModelForm):
 
     class Meta:
         model = PartnerAddress
-        fields = ['line1', 'line2', 'line3', 'line4',
-                  'state', 'postcode', 'country']
+        fields = ('line1', 'line2', 'line3', 'line4',
+                  'state', 'postcode', 'country')
 
 BasePartnerAddressFormSet = inlineformset_factory(
     Partner, PartnerAddress, form=PartnerAddressForm, extra=1, fk_name="partner")
