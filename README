@@ -59,3 +59,13 @@ sudo apt-get install libjpeg-dev
 http://django-oscar.readthedocs.org/en/latest/internals/getting_started.html
 
 Have a nice freakin' day. :)
+
+UPDATE!!
+
+When pulling master, it is now necessary to install certain packages to enable Paypal support.
+
+1. Make sure you are in your virtual environment. Run "pip install django-oscar-paypal".
+2. After successful installation, run "python manage.py syncdb"
+
+NOTE -- There is currently an issue with product images that has not yet been addressed that is almost certainly related
+to this integration.
