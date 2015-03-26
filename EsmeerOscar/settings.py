@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'paypal',
 ] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue'])
 
+
 SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
