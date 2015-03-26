@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'paypal',
-] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout'])
+] + get_core_apps(['EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue'])
 
 SITE_ID = 1
 
@@ -102,7 +102,9 @@ DATABASES = {
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr',
+        'INCLUDE_SPELLING': True,
     },
 }
 

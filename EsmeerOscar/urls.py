@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^dashboard/paypal/express/', include(application.urls)),
     url(r'', include(shop.urls)),
     url(r'', include(application.urls)),
+    (r'^search/', include('haystack.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
