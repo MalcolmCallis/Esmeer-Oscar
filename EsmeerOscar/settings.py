@@ -106,6 +106,7 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
         'URL': 'http://127.0.0.1:8983/solr',
         'INCLUDE_SPELLING': True,
+        'EXCLUDED_INDEXES':['oscar.apps.search.search_indexes.ProductIndex']
     },
 }
 
