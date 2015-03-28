@@ -10,10 +10,6 @@ from django.conf import settings
 
 from oscar.apps.partner.abstract_models import AbstractPartner
 
-from oscar.core.loading import get_model
-
-Category = get_model('catalogue', 'category')
-
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
   
 class Partner(AbstractPartner):
