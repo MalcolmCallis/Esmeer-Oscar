@@ -10,9 +10,21 @@ from django.conf import settings
 
 from oscar.apps.partner.abstract_models import AbstractPartner
 
+from oscar.core.loading import get_model
+
+Category = get_model('catalogue', 'category')
+
+from oscar.apps.catalogue.categories import create_from_breadcrumbs
+  
 class Partner(AbstractPartner):
     image = models.ImageField(_('Image'), upload_to=settings.OSCAR_IMAGE_FOLDER, blank=True,
                               null=True, max_length=255)
+
+    def save(self, *args, **kwargs):
+
+        super(Partner, self).save(*args, **kwargs)
+
+        create_from_breadcrumbs(self.name)
 
 from oscar.apps.partner.abstract_models import AbstractStockRecord
 
