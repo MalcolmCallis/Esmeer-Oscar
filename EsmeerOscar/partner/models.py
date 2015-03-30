@@ -19,8 +19,11 @@ class Partner(AbstractPartner):
     def save(self, *args, **kwargs):
 
         super(Partner, self).save(*args, **kwargs)
+
         newCategory = create_from_breadcrumbs(self.name)
         newCategory.partner = self
+        newCategory.save()
+            
 
 from oscar.apps.partner.abstract_models import AbstractStockRecord
 
