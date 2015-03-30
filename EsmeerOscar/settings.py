@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'paypal',
-] + get_core_apps(['EsmeerOscar.dashboard.partners', 'EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout'])
+] + get_core_apps(['EsmeerOscar.dashboard.partners', 'EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue'])
 
 
 SITE_ID = 1
