@@ -4,21 +4,20 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from oscar.app import shop
-
+from EsmeerOscar.app import application as app
 from paypal.express.dashboard.app import application
 
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
-
     # The Django admin is not officially supported; expect breakage.
     # Nonetheless, it's often useful for debugging.
     url(r'^admin/', include(admin.site.urls)),
     url(r'^checkout/paypal/', include('paypal.express.urls')),
     url(r'^dashboard/paypal/express/', include(application.urls)),
     url(r'', include(shop.urls)),
-    url(r'', include(application.urls)),
     url(r'^search/', include('haystack.urls')),
+    url(r'', include(app.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
