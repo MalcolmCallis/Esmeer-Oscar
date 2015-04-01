@@ -9,7 +9,9 @@ from oscar.core.utils import slugify
 from oscar.core.loading import get_class, get_model
 from oscar.forms.widgets import ImageInput
 
-from oscar.apps.dashboard.catalogue.forms import StockRecordForm as CoreStockRecordForm
+from oscar.apps.dashboard.catalogue.forms import StockRecordForm as CoreStockRecordForm, BaseCategoryForm
+
+Category = get_model('catalogue', 'Category')
 
 class StockRecordForm(CoreStockRecordForm):
     def __init__(self, product_class, user, *args, **kwargs):
@@ -29,4 +31,7 @@ class StockRecordForm(CoreStockRecordForm):
         else:
             self.fields['price_excl_tax'].required = True
             self.fields['num_in_stock'].required = True
+
+CategoryForm = movenodeform_factory(Category, form=BaseCategoryForm, exclude=('partner',) )
+
 
