@@ -180,3 +180,5 @@ OSCAR_DASHBOARD_NAVIGATION.append(
     })
 
 PAYPAL_CURRENCY = "USD"
+OSCAR_SHOP_NAME = "Esmeer"
+OSCAR_FROM_EMAIL = "noreply@esmeer.com"
