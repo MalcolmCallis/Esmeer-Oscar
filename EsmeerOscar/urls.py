@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^checkout/paypal/', include('paypal.express.urls')),
     url(r'^dashboard/paypal/express/', include(application.urls)),
-    url(r'', include(shop.urls)),
     url(r'^search/', include('haystack.urls')),
     url(r'', include(app.urls)),
 ]

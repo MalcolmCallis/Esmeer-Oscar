@@ -12,10 +12,20 @@ from oscar.views.decorators import login_forbidden
 
 
 class MyShop(app.Shop):
+    catalogue_app = get_class('catalogue.app', 'application')
+    customer_app = get_class('customer.app', 'application')
+    basket_app = get_class('basket.app', 'application')
+    checkout_app = get_class('checkout.app', 'application')
+    promotions_app = get_class('promotions.app', 'application')
+    search_app = get_class('search.app', 'application')
+    dashboard_app = get_class('dashboard.app', 'application')
+    offer_app = get_class('offer.app', 'application')
 
-    # Override get_urls method
+    password_reset_form = get_class('customer.forms', 'PasswordResetForm')
+    set_password_form = get_class('customer.forms', 'SetPasswordForm')
+
     def get_urls(self):
-        urlpatterns = [
+        urls = [
             url(r'^catalog/', include(self.catalogue_app.urls)),
             url(r'^basket/', include(self.basket_app.urls)),
             url(r'^checkout/', include(self.checkout_app.urls)),
@@ -42,7 +52,7 @@ class MyShop(app.Shop):
         #               supports legacy links
         # Django > 1.7: used uidb64 to encode the user's primary key
         # see https://docs.djangoproject.com/en/dev/releases/1.6/#django-contrib-auth-password-reset-uses-base-64-encoding-of-user-pk
-        urlpatterns.append(
+        urls.append(
             url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
                 login_forbidden(auth_views.password_reset_confirm),
                 {
@@ -51,7 +61,7 @@ class MyShop(app.Shop):
                 },
                 name='password-reset-confirm'))
         if django.VERSION < (1, 7):
-            urlpatterns.append(
+            urls.append(
                 url(r'^password-reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
                     login_forbidden(auth_views.password_reset_confirm_uidb36),
                     {
@@ -59,12 +69,12 @@ class MyShop(app.Shop):
                         'set_password_form': self.set_password_form,
                     }))
 
-        urlpatterns += [
+        urls += [
             url(r'^password-reset/complete/$',
                 login_forbidden(auth_views.password_reset_complete),
                 name='password-reset-complete'),
             url(r'', include(self.promotions_app.urls)),
         ]
-        return urlpatterns
+        return urls
 
 application = MyShop()
