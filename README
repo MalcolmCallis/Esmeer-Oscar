@@ -47,9 +47,14 @@ Awesome. So we have the site up now. It's beautiful, right? RIGHT?
 
 Note: Before running this next step, it's important to note that, by default, the next command will mark all countries as shipping countries. If you call it with the --no-shipping option, it will not mark any of them as shipping so it will need to be marked manually.
 
-2. python manage.py oscar_populate_countries
+2. python manage.py oscar_populate_countries --no-shipping
 
 All of the necessary steps to start this from scratch (and what I personally used to set this up) can be found here:
+
+After running the above command you will need to open up mysql and manually add
+	update production.address_country set is_shipping_country=1 where name ="United States of America";
+
+This will make the United States of America the only shipping country
 
 run pip install pillow
 
@@ -78,3 +83,12 @@ Password: EsmeerFTW!
 Paypal Test Buyer:
 Login: EsmeerTest-buyer@gmail.com
 Password: EsmeerFTW!
+
+
+Some Steps for email after pulling down master
+ update production.django_site set domain="esmeer.com";
+ update production.django_site set name="esmeer.com";
+
+So the password resets that the link provides work when I tested it with my domain. 
+
+
