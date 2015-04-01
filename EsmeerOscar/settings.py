@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 from oscar import get_core_apps
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
