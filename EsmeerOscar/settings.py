@@ -216,7 +216,7 @@ OSCAR_DASHBOARD_NAVIGATION = [
         ]
     },
     {
-        'label': _('Fulfilment'),
+        'label': _('Fulfillment'),
         'icon': 'icon-shopping-cart',
         'children': [
             {
