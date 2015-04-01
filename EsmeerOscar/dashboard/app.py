@@ -34,7 +34,7 @@ class DashboardApplication(EsmeerDashboard):
             #url(r'^content-blocks/', include(self.promotions_app.urls)),
             #url(r'^pages/', include(self.pages_app.urls)),
             url(r'^partners/', include(self.partners_app.urls)),
-            #url(r'^offers/', include(self.offers_app.urls)),
+            url(r'^offers/', include(self.offers_app.urls)),
             url(r'^ranges/', include(self.ranges_app.urls)),
             url(r'^reviews/', include(self.reviews_app.urls)),
             #url(r'^vouchers/', include(self.vouchers_app.urls)),
