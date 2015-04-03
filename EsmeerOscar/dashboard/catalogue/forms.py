@@ -11,6 +11,8 @@ from oscar.forms.widgets import ImageInput
 
 from oscar.apps.dashboard.catalogue.forms import StockRecordForm as CoreStockRecordForm
 
+Product = get_model('catalogue', 'Product')
+
 class StockRecordForm(CoreStockRecordForm):
     def __init__(self, product_class, user, *args, **kwargs):
         # The user kwarg is not used by stock StockRecordForm. We pass it
@@ -30,3 +32,12 @@ class StockRecordForm(CoreStockRecordForm):
             self.fields['price_excl_tax'].required = True
             self.fields['num_in_stock'].required = True
 
+from oscar.apps.dashboard.catalogue.forms import ProductForm as CoreProductForm
+
+class ProductForm(CoreProductForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'upc', 'description', 'weight', 'width', 'length', 'height']
+        widgets = {
+            'structure': forms.HiddenInput()
+        }
