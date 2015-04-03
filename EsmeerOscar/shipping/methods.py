@@ -1,4 +1,5 @@
 from oscar.apps.shipping import methods
+from oscar.apps.checkout.session import CheckoutSessionMixin
 from decimal import Decimal as D
 from oscar.core import prices
 import requests
@@ -9,10 +10,9 @@ class StandardPost(methods.Base):
     name = 'USPS Standard Post Shipping'
     description = "Delivered within 2-8 business days"
     def calculate(self, basket):
-        getShippingPrice(basket, "STANDARD POST")
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D('20.00'))
+            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "STANDARD POST")))
 
 
 class PriorityMail(methods.Base):
@@ -20,20 +20,18 @@ class PriorityMail(methods.Base):
     name = 'USPS Priority Mail Shipping'
     description = "Delivered within 1-3 business days"
     def calculate(self, basket):
-        getShippingPrice(basket, "PRIORITY")
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D('20.00'))
+            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY")))
 
 class PriorityMailExpress(methods.Base):
     code = 'prioritymailexpress'
     name = 'USPS Priority Mail Express Shipping'
     description = "Delivered overnight"
     def calculate(self, basket):
-        getShippingPrice(basket, "PRIORITY MAIL EXPRESS")
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D('20.00'))
+            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY MAIL EXPRESS")))
 
 def getShippingPrice(basket, typeOfService, firstClassMailType = ""):
     start = 1
@@ -42,7 +40,9 @@ def getShippingPrice(basket, typeOfService, firstClassMailType = ""):
         uspsRequest += "<Package ID=\"" + str(start) + "\">"
         uspsRequest += "<Service>" + str(typeOfService) + "</Service>"
         uspsRequest += "<FirstClassMailType>" + str(firstClassMailType) + "</FirstClassMailType>"
+        print get_shipping_address(self, basket)
         #Need to figure out how to get each product's vendor's zipcode...
+        print shipping_addr
         uspsRequest += "<ZipOrigination>43202</ZipOrigination>"
         #And also how to get the shipping zipcode
         uspsRequest += "<ZipDestination>90210</ZipDestination>"
@@ -70,7 +70,8 @@ def getShippingPrice(basket, typeOfService, firstClassMailType = ""):
     uspsRequest += "</RateV4Request>"
     r = requests.post(uspsRequest)
     r.encoding = 'UTF-8'
-    print r.text
     root = ET.fromstring(r.text)
-    print root
-    
+    price = 0.0
+    for rate in root.findall("./Package/Postage/Rate"):
+        price += float(rate.text)
+    return price
