@@ -1,9 +1,14 @@
 from oscar.apps.shipping import methods
-from oscar.apps.checkout.session import CheckoutSessionMixin
+from oscar.apps.checkout import session
 from decimal import Decimal as D
 from oscar.core import prices
 import requests
 import xml.etree.ElementTree as ET
+from oscar.core.loading import get_model, get_class
+
+ShippingAddress = get_model('order', 'ShippingAddress')
+BillingAddress = get_model('order', 'BillingAddress')
+UserAddress = get_model('address', 'UserAddress')
 
 class StandardPost(methods.Base):
     code = 'standardpost'
@@ -40,9 +45,9 @@ def getShippingPrice(basket, typeOfService, firstClassMailType = ""):
         uspsRequest += "<Package ID=\"" + str(start) + "\">"
         uspsRequest += "<Service>" + str(typeOfService) + "</Service>"
         uspsRequest += "<FirstClassMailType>" + str(firstClassMailType) + "</FirstClassMailType>"
-        print get_shipping_address(self, basket)
+
         #Need to figure out how to get each product's vendor's zipcode...
-        print shipping_addr
+        
         uspsRequest += "<ZipOrigination>43202</ZipOrigination>"
         #And also how to get the shipping zipcode
         uspsRequest += "<ZipDestination>90210</ZipDestination>"
