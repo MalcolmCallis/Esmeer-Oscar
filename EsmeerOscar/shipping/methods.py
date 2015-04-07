@@ -1,56 +1,60 @@
 from oscar.apps.shipping import methods
-from oscar.apps.checkout import session
 from decimal import Decimal as D
 from oscar.core import prices
 import requests
 import xml.etree.ElementTree as ET
 from oscar.core.loading import get_model, get_class
 
-ShippingAddress = get_model('order', 'ShippingAddress')
-BillingAddress = get_model('order', 'BillingAddress')
-UserAddress = get_model('address', 'UserAddress')
-
-class StandardPost(methods.Base):
-    code = 'standardpost'
-    name = 'USPS Standard Post Shipping'
-    description = "Delivered within 2-8 business days"
-    def calculate(self, basket):
-        return prices.Price(
-            currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "STANDARD POST")))
-
+Partner = get_model('partner', 'Partner')
+StockRecord = get_model('partner', 'StockRecord')
+PartnerAddress = get_model('partner', 'PartnerAddress')
 
 class PriorityMail(methods.Base):
+
+    def __init__(self, zipcode=None):
+        super(methods.Base, self).__init__()
+        self.zipcode = zipcode
+
     code = 'prioritymail'
     name = 'USPS Priority Mail Shipping'
     description = "Delivered within 1-3 business days"
     def calculate(self, basket):
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY")))
+            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY", self.zipcode)))
 
 class PriorityMailExpress(methods.Base):
+
+    def __init__(self, zipcode):
+        super(methods.Base, self).__init__()
+        self.zipcode = zipcode
+
     code = 'prioritymailexpress'
     name = 'USPS Priority Mail Express Shipping'
     description = "Delivered overnight"
     def calculate(self, basket):
         return prices.Price(
             currency=basket.currency,
-            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY MAIL EXPRESS")))
+            excl_tax=D('0.00'), incl_tax=D(getShippingPrice(basket, "PRIORITY MAIL EXPRESS", self.zipcode)))
 
-def getShippingPrice(basket, typeOfService, firstClassMailType = ""):
+def getShippingPrice(basket, typeOfService, zipcode):
     start = 1
     uspsRequest = "http://production.shippingapis.com/ShippingAPI.dll?API=RateV4&XML=<RateV4Request USERID=\"167ESMEE3782\">"
     for item in basket.all_lines():
+
         uspsRequest += "<Package ID=\"" + str(start) + "\">"
         uspsRequest += "<Service>" + str(typeOfService) + "</Service>"
-        uspsRequest += "<FirstClassMailType>" + str(firstClassMailType) + "</FirstClassMailType>"
+        uspsRequest += "<FirstClassMailType></FirstClassMailType>"
 
         #Need to figure out how to get each product's vendor's zipcode...
         
-        uspsRequest += "<ZipOrigination>43202</ZipOrigination>"
+        uspsRequest += "<ZipOrigination>" + zipcode + "</ZipOrigination>"
+        
+        tempStockRecord = StockRecord.objects.get(product=item.product)
+        tempAddress = PartnerAddress.objects.get(partner=tempStockRecord.partner)
+        print tempAddress.postcode
         #And also how to get the shipping zipcode
-        uspsRequest += "<ZipDestination>90210</ZipDestination>"
+        uspsRequest += "<ZipDestination>" + tempAddress.postcode + "</ZipDestination>"
         totalWeight = basket.product_quantity(item.product) * item.product.weight
         pounds,oz = divmod(totalWeight, 1)
         oz = oz * 16
