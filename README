@@ -53,6 +53,8 @@ All of the necessary steps to start this from scratch (and what I personally use
 
 After running the above command you will need to open up mysql and manually add
 	update production.address_country set is_shipping_country=1 where name ="United States of America";
+	update production.django_site set name="esmeer.com";
+	update production.django_site set domain="esmeer.com";
 
 This will make the United States of America the only shipping country
 
@@ -84,11 +86,5 @@ Paypal Test Buyer:
 Login: EsmeerTest-buyer@gmail.com
 Password: EsmeerFTW!
 
-
-Some Steps for email after pulling down master
- update production.django_site set domain="esmeer.com";
- update production.django_site set name="esmeer.com";
-
-So the password resets that the link provides work when I tested it with my domain. 
 
 
