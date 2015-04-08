@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'paypal',
-] + get_core_apps(['EsmeerOscar.dashboard.partners','EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue'])
+] + get_core_apps(['EsmeerOscar.dashboard.partners','EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue', 'EsmeerOscar.promotions'])
 
 SITE_ID = 1
 
@@ -158,6 +158,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'EsmeerOscar/static'),)
 
 # Make the default Currency USD
 

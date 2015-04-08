@@ -1,0 +1,128 @@
+{% extends "oscar/base.html" %} 
+
+{% load i18n compress %}
+{% load staticfiles %}
+{% load promotion_tags %}
+
+    {% block title %} Esmeer {% endblock %}
+
+{% block mainstyles %}
+            {% comment %}
+            We use an inner block to work-around the fact that django-compressor doesn't work with
+            template inheritance.  Ie, we can't just wrap the {% block mainstyles %} with compress tags and
+            expect it to compress CSS files added in child templates.
+            {% endcomment %}
+            {% block styles %}
+                {% comment %}
+                If you are developing Oscar's CSS, or overriding Oscar's CSS
+                files in your project, then set USE_LESS = True in your
+                settings file.  You will also need to ensure that the 'lessc'
+                executable is available and you have COMPRESS_PRECOMPILERS specified
+                correctly.
+{% endcomment %}
+<link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}">
+            {% endblock %}
+{% endblock %}
+			
+{% block extrastyles %}
+{% compress css %}
+
+
+<link  rel="stylesheet" href="{% static "oscar/css/homepage-style.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block extrahead %}
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+{% endblock %}
+    
+{% block layout %}
+{# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "partials/nav_accounts.html" %}
+    {% block content %}
+	<main class="container-fluid main-section">
+	    <section class="introduction">
+		<div class="container">
+		    <div class="introduction-text">
+			<h1 class="page-title"> ESMEER </h1>
+			<!-- <h2 class="subtitle"> SHOP COLUMBUS </h2> -->
+			<h3 class="mission-statement">
+			    CONNECTING LOCAL BUSINESSES TO THE WORLD
+			</h3>
+		    </div>
+		    <div class="search-container">
+			<form class="form-horizontal search-form">
+			    <input type="search" class="input-lg search-bar" placeholder="Search for Products or Partners">
+			    <button class="btn btn-default btn-lg search-button" type="submit"> <span class="glyphicon glyphicon-search"></span> </button>
+			</form>
+		    </div>
+		    <button class="btn btn-default btn-lg learn-more-button"> LEARN MORE </button>
+		</div>
+	    </section>
+	    <section class="more-info">
+		<p> CHAOS </p>
+	    </section>
+	    <section class="partners">
+		<div class="container">
+		    <h1 class="partners-title">FEATURED PARTNERS </h1>
+		    <div class="partner-images">
+			<!-- data--100-center="width:100%" data-start="width: 0%" -->
+			<img src="{% static "oscar/img/brigade.png" %}" class="img-responsive" alt="Brigade Image">
+			<img src="images/embassy.png" class="img-responsive" alt="Embassy Image">
+			<img src="images/eclectiques.png" class="img-responsive" alt="Eclectiques Image">
+		    </div>
+		    <div class="partner-images">
+			<!-- data-center-center="opacity: 1" data-start="opacity: 0" -->
+			<img src="images/brigade.png" class="img-responsive" alt="Brigade Image">
+			<img src="images/embassy.png" class="img-responsive" alt="Embassy Image">
+			<img src="images/eclectiques.png" class="img-responsive" alt="Eclectiques Image">
+		    </div>
+		</div>
+	    </section>
+	    <section class="signup">
+		<div class="container">
+		    <!-- <div class="col-lg-6 customer-info" data-bottom="right:100%;margin-right:-100px;" data-150-top="right:0%;margin-right:0px;"> -->
+		    <div class="col-lg-6 customer-info">		    
+			<div class="user-info">
+			    <span class="glyphicon glyphicon-user signup-icon" aria-hidden="true"></span>
+			    <h2 class="user-title title"> CUSTOMERS </h2>
+			    <p class="user-info-text"> Users have access to unique stores around the nation which reflect the city's local culture. </p>
+			    <button class="btn btn-default btn-lg signup-button" type="submit"> SIGN UP </button>
+			</div>
+		    </div>
+		    <!-- <div class="col-lg-6 partner-info" data-anchor-target=".customer-info" data-bottom="left:100%;margin-left:-100px;" data-150-top="left:0%;margin-left:0px;"> -->
+		    <!-- data-anchor-target=".customer-info" data-bottom-top="transform:translate3d(0px, 200%, 0px)" data-center="transform:translate3d(0px, 0%, 0px)" -->
+		    <div class="col-lg-6 partner-info" >
+			<div class="user-info">
+			    <span class="glyphicon glyphicon-shopping-cart signup-icon" aria-hidden="true"></span>
+			    <h2 class="user-title title"> BUSINESSES </h2>
+			    <div class="user-info-div">
+				<p  class="user-info-text"> Businesses have access to consumers outside of their local market. </p>
+			    </div>
+   			    <button class="btn btn-default btn-lg business-contact-button" type="submit"> GET IN TOUCH </button>
+			</div>
+		    </div>
+		</div>
+	    </section>
+	    <section class="aboutus">
+		<h2 class="title aboutus-title"> ABOUT US </h2>
+	    </section>
+	    <section class="contact">
+		<h2 class="title contact-title"> CONTACT US </h2>
+	    </section>
+	</main>
+	{% endblock %}
+
+	{% include "partials/footer.html" %}
+	{% endblock %}
+
+	{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+    
+	{% block onbodyload %}
+	    $(".learn-more-button").click(function() {
+	$(".more-info").fadeToggle();
+	});
+	{% endblock %}

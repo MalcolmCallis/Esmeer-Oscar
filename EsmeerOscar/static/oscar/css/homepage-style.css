@@ -1,0 +1,198 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+}
+
+.main-section{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+html, body, .container-fluid {
+    height: 100%;
+}
+
+.introduction {
+    background-image: url("../img/CBUS3.png");
+    background-repeat:no-repeat;
+    background-size:100%;
+    height: 60em;
+    overflow: visible;
+}
+
+.introduction-text{
+    margin-top: 100px;
+    /* background-color: rgba(52,52,52, .3); */
+    /* background-color: rgba(0,0,0, .2); */
+}
+
+
+.page-title {
+    /* margin-top: 1em; */
+    text-align: center;
+    font-weight: 900;
+    font-size:14em;
+    color: #faebd7;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+}
+
+.subtitle{
+    text-align: center;
+    font-size: 3em;
+    font-weight: 900;
+    color: #faebd7;
+
+}
+
+.mission-statement {
+    padding-bottom: 2em;
+    text-align: center;
+    font-size: 2em;
+    color: #faebd7;
+}
+
+.search-container {
+    width: 45em;
+    align: center;
+    margin: auto;
+}
+
+
+.search-form {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-top: 5em;
+
+}
+
+.search-bar {
+    background-color: #faebd7;
+    flex-grow: 6;
+    margin-right: 2px;
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.search-bar:hover{
+    border: 2px solid white;
+}
+
+
+.search-button {
+    font-weight: bold;
+    width: 6%;
+    background-color: #faebd7;
+    flex-grow: 1;
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.learn-more-button{
+    align: center;
+    text-align: center;
+    display: block;
+    width: 10em;
+    margin: 3em auto 0px auto;
+}
+
+.more-info {
+    display: none;
+    height: 20em;
+}
+
+
+.partners {
+
+    background-color: #343434;
+    background-repeat:no-repeat;
+    background-size:100%;
+    min-height: 40em;
+    overflow: visible;
+    padding-bottom: 5%;
+}
+
+.signup {
+    background-image: url("../img/mapgrayopaque.png");
+    background-repeat:no-repeat;
+    background-size: cover;
+    min-height: 600px;
+    min-width: 100%;
+    overflow: visible;
+}
+
+.partners-title {
+    /* margin-top: 1em; */
+    text-align: center;
+    font-weight: 900;
+    font-size:7em;
+    color: #faebd7;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.partner-images{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 260px; 
+}
+
+
+.user-info{
+    /* margin: 4em 3em 4em 3em; */
+    margin-top: 40px;
+    padding: 1em 0em 2em 0em;
+    align: center;
+    text-align: center;
+    background-color: rgba(0,0,0, .2);
+    vertical-align: middle;
+    display: block;
+    border-radius: 15px;
+}
+
+.signup-icon {
+    font-size: 10em;
+}
+
+
+.title {
+    font-size: 4em;
+    text-align: center;
+}
+
+.user-info-div{
+
+}
+
+.user-info-text {
+    width: 20em;
+    font-size: 1.5em;
+    margin: 4em auto 1em auto;
+    height: 5em;
+    display: block;
+}
+
+.contact {
+    min-height:20em;
+}
+
+img {
+    display: block;
+    align: center;
+    text-align: center;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
