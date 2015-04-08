@@ -1,0 +1,15 @@
+[
+
+    {
+        "model": "catalogue.ProductClass",
+        "pk": 200,
+        "fields": {
+
+            "name": "default",
+
+             "slug" : "default"
+
+        }
+    }
+
+]
