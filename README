@@ -93,6 +93,6 @@ DEFAULT PRODUCT UPDATE
 
 For the default product type to work, run: 
 
-	./manage.py EsmeerOscar/fixtures/productClass.json 
+	./manage.py loaddata EsmeerOscar/fixtures/productClass.json 
 	
 This just feeds the productClass database a default product type. You should only have to run this once, unless the ProductClass table is wiped. Then you have to run it again. 
