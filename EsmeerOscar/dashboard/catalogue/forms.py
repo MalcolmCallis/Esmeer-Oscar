@@ -10,8 +10,10 @@ from oscar.core.loading import get_class, get_model
 from oscar.forms.widgets import ImageInput
 
 from oscar.apps.dashboard.catalogue.forms import StockRecordForm as CoreStockRecordForm, BaseCategoryForm
+from oscar.apps.dashboard.catalogue.forms import ProductForm as CoreProductForm
 
 Category = get_model('catalogue', 'Category')
+Product = get_model('catalogue', 'Product')
 
 class StockRecordForm(CoreStockRecordForm):
     def __init__(self, product_class, user, *args, **kwargs):
@@ -34,4 +36,10 @@ class StockRecordForm(CoreStockRecordForm):
 
 CategoryForm = movenodeform_factory(Category, form=BaseCategoryForm, exclude=('partner',) )
 
-
+class ProductForm(CoreProductForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'upc', 'description', 'weight', 'width', 'length', 'height']
+        widgets = {
+            'structure': forms.HiddenInput()
+        }
