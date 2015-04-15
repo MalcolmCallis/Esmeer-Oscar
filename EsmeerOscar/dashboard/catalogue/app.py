@@ -17,6 +17,20 @@ class CatalogueApplication(Application):
                                      ['partner.dashboard_access']),
         'catalogue-product-lookup': (['is_staff'],
                                      ['partner.dashboard_access']),
+        'catalogue-category-list': (['is_staff'],
+                                     ['partner.dashboard_access']),
+        'catalogue-category-detail-list': (['is_staff'],
+                                     ['partner.dashboard_access']),
+        'catalogue-category-create': (['is_staff'],
+                                     ['partner.dashboard_access']),
+        'catalogue-category-create-child': (['is_staff'],
+                                     ['partner.dashboard_access']),
+        'catalogue-category-update': (['is_staff'],
+                                     ['partner.dashboard_access']),
+        'catalogue-category-delete': (['is_staff'],
+                                     ['partner.dashboard_access']),
+
+
     }
 
     product_list_view = get_class('dashboard.catalogue.views',
