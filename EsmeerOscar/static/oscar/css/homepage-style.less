@@ -1,0 +1,230 @@
+/* Colors:
+http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
+
+
+@blue: rgb(51, 176, 202);
+@lightblue: rgb(133, 216, 231);
+@yellow: rgb(255, 255, 137);
+@black: rgb(0, 0, 0);
+
+@main: @blue;
+@complement: @yellow;
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+}
+
+.main-section{
+    margin: 0px;	
+    padding: 0px;
+}
+
+
+html, body, .container-fluid {
+    height: 100%;
+}
+
+.introduction {
+    height: 60em;
+    overflow: visible;
+    margin-top: 100px;
+}
+
+.introduction-text{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(52,52,52, .3); */
+    /* background-color: rgba(0,0,0, .2); */
+}
+
+@media all and (max-width: 500px) {
+  .introduction-text {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
+
+.page-title {
+    /* margin-top: 1em; */
+    text-align: center;
+    font-weight: 900;
+    font-size:14em;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+}
+
+.subtitle{
+    text-align: center;
+    font-size: 3em;
+    font-weight: 900;
+    color: white;
+
+}
+
+.mission-statement {
+    padding-bottom: 2em;
+    text-align: center;
+    font-size: 2em;
+}
+
+.search-container {
+    width: 45em;
+    align: center;
+    margin: auto;
+}
+
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.search-bar {
+    background-color: white;
+    flex-grow: 6;
+    margin-right: 2px;
+    border: 2px solid @main;
+    border-radius: 2px;
+}
+
+.search-bar:hover{
+    border: 2px solid white;
+}
+
+
+.search-button {
+    font-weight: bold;
+    width: 6%;
+    background-color: white;
+    flex-grow: 1;
+    /* border: 3px solid  #faebd7; */
+    border-radius: 4px;
+}
+
+.learn-more-button{
+    align: center;
+    text-align: center;
+    display: block;
+    width: 10em;
+    margin: 3em auto 0px auto;
+}
+
+.signup-button, .business-contact-button {
+    background-color: @lightblue;
+    color: white;
+}
+
+.info-icon{
+    font-size: 10em;
+}
+
+
+
+.partners {
+    /* #343434 */
+    /* background-color: rgb(51, 176, 202); */
+    background-color: @lightblue;
+    background-repeat:no-repeat;
+    background-size:100%;
+    min-height: 40em;
+    overflow: visible;
+    padding-bottom: 5%;
+}
+
+.signup {
+    min-height: 600px;
+    min-width: 100%;
+    overflow: visible;
+}
+
+.partners-title {
+    /* margin-top: 1em; */
+    text-align: center;
+    font-weight: 900;
+    font-size:7em;
+    /* color: #faebd7; */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.partner-images{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 260px; 
+}
+
+
+.user-info{
+    /* margin: 4em 3em 4em 3em; */
+    margin-top: 40px;
+    padding: 1em 0em 2em 0em;
+    align: center;
+    text-align: center;
+    background-color: lighten(@black, 80%);
+    vertical-align: middle;
+    display: block;
+    border-radius: 15px;
+}
+
+.signup-icon {
+    font-size: 10em;
+}
+
+
+.title {
+    font-size: 4em;
+    text-align: center;
+}
+
+.user-info-div{
+
+}
+
+.user-info-text {
+    width: 20em;
+    font-size: 1.5em;
+    margin: 4em auto 1em auto;
+    height: 5em;
+    display: block;
+}
+
+.contact {
+    min-height:20em;
+}
+
+/* img {
+   display: block;
+   align: center;
+   text-align: center;
+   margin: auto;
+   margin-left: auto;
+   margin-right: auto;
+   } */
+
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-brand{
+    margin: auto;
+    /* auto 0px auto 0px; */
+    padding: 0px 15px 0px 15px;
+}
+
+
+.banner-image {
+    height: 40px;
+    margin-top: 5px;
+}
