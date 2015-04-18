@@ -23,7 +23,7 @@ class PartnerCreateForm(forms.ModelForm):
   
     class Meta:
         model = Partner
-        fields = ('name','users', 'image')
+        fields = ('name', 'image')
 
 
 
