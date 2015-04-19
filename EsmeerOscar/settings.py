@@ -40,9 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'static_precompiler',
     'compressor',
     'paypal',
-] + get_core_apps(['EsmeerOscar.dashboard.partners','EsmeerOscar.dashboard', 'EsmeerOscar.shipping', 'EsmeerOscar.partner', 'EsmeerOscar.dashboard.catalogue', 'EsmeerOscar.checkout','EsmeerOscar.catalogue', 'EsmeerOscar.promotions'])
+] + get_core_apps(['EsmeerOscar.dashboard.partners',
+                   'EsmeerOscar.dashboard',
+                   'EsmeerOscar.shipping',
+                   'EsmeerOscar.partner',
+                   'EsmeerOscar.dashboard.catalogue',
+                   'EsmeerOscar.checkout',
+                   'EsmeerOscar.catalogue',
+                   'EsmeerOscar.promotions'])
 
 SITE_ID = 1
 
@@ -122,6 +130,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.app_directories.load_template_source',
 )
 
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
@@ -160,6 +169,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'EsmeerOscar/static'),)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'static_precompiler.finders.StaticPrecompilerFinder',
+)
 
 # Make the default Currency USD
 

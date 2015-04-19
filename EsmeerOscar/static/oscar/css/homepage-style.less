@@ -5,10 +5,26 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
 @blue: rgb(51, 176, 202);
 @lightblue: rgb(133, 216, 231);
 @yellow: rgb(255, 255, 137);
+@lightyellow: rgb(255, 255, 212);
 @black: rgb(0, 0, 0);
 
+@introductionBackground: @lightyellow;
+
 @main: @blue;
-@complement: @yellow;
+@compliment: @yellow;
+
+// Pixel sizes for divs
+@large: 500px;
+@small: 250px;
+@medium: 350px;
+@buttonIconSmall: 50px;
+
+
+// Mixins
+.clearMargins {
+    margins: 0px;
+}
+
 
 body {
     margin: 0px;
@@ -22,21 +38,18 @@ body {
 }
 
 
-html, body, .container-fluid {
-    height: 100%;
-}
-
 .introduction {
-    height: 60em;
-    overflow: visible;
-    margin-top: 100px;
+    background-color: @introductionBackground;
+    height: @large;
+    /* overflow: visible; */
+    padding-top: 100px;
 }
 
 .introduction-text{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     /* background-color: rgba(52,52,52, .3); */
     /* background-color: rgba(0,0,0, .2); */
 }
@@ -49,23 +62,14 @@ html, body, .container-fluid {
 }
 
 
-.page-title {
-    /* margin-top: 1em; */
-    text-align: center;
-    font-weight: 900;
-    font-size:14em;
-    color: white;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-
-}
-
-.subtitle{
-    text-align: center;
-    font-size: 3em;
-    font-weight: 900;
-    color: white;
-
+.introduction-text{
+    > .title-banner {
+	width: @large;
+    }
+    > .search-container {
+	width: @large * 1.5;
+	align-items: flex-end;
+    } 
 }
 
 .mission-statement {
@@ -74,47 +78,24 @@ html, body, .container-fluid {
     font-size: 2em;
 }
 
-.search-container {
-    width: 45em;
-    align: center;
-    margin: auto;
-}
-
-
-.search-form {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
-
 .search-bar {
+    width: @large;
     background-color: white;
-    flex-grow: 6;
-    margin-right: 2px;
-    border: 2px solid @main;
+/*    margin-right: 2px;*/
+    border: 1px solid @main;
     border-radius: 2px;
 }
 
-.search-bar:hover{
-    border: 2px solid white;
-}
-
-
 .search-button {
     font-weight: bold;
-    width: 6%;
+    width: @buttonIconSmall;
     background-color: white;
-    flex-grow: 1;
     /* border: 3px solid  #faebd7; */
-    border-radius: 4px;
+    border-radius: 1px;
 }
 
-.learn-more-button{
-    align: center;
-    text-align: center;
-    display: block;
-    width: 10em;
-    margin: 3em auto 0px auto;
+.glyphicon-search{
+    .clearMargins;
 }
 
 .signup-button, .business-contact-button {
@@ -122,16 +103,36 @@ html, body, .container-fluid {
     color: white;
 }
 
-.info-icon{
-    font-size: 10em;
+.more-info {
+    > div {
+	margin: 0 auto;
+	width: @medium * 4;
+	> div {
+	    margin: 0 25px;
+	}
+    }
+    > :first-child {
+	margin-top: 50px;
+	margin-bottom: 50px;
+    }
+    > :nth-child(3) {
+	margin-top: 50px;
+	margin-bottom: 100px;
+    }
+    .col-md-4 {
+	max-width: @medium;
+    }
 }
 
 
+.info-icon{
+    font-size: 6em;
+}
 
 .partners {
     /* #343434 */
     /* background-color: rgb(51, 176, 202); */
-    background-color: @lightblue;
+    background-color: lighten(@lightblue, 20%);
     background-repeat:no-repeat;
     background-size:100%;
     min-height: 40em;
@@ -171,10 +172,10 @@ html, body, .container-fluid {
     padding: 1em 0em 2em 0em;
     align: center;
     text-align: center;
-    background-color: lighten(@black, 80%);
+    background-color: lighten(@black, 95%);
     vertical-align: middle;
     display: block;
-    border-radius: 15px;
+    border-radius: 2px;
 }
 
 .signup-icon {

@@ -3,8 +3,10 @@
 {% load i18n compress %}
 {% load staticfiles %}
 {% load promotion_tags %}
+{% load less %}
 
-    {% block title %} Esmeer {% endblock %}
+{% block title %} Esmeer {% endblock %}
+
 
 {% block mainstyles %}
             {% comment %}
@@ -19,8 +21,8 @@
                 settings file.  You will also need to ensure that the 'lessc'
                 executable is available and you have COMPRESS_PRECOMPILERS specified
                 correctly.
-{% endcomment %}
-<link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}">
+                {% endcomment %}
+                <link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}">
             {% endblock %}
 {% endblock %}
 			
@@ -28,7 +30,7 @@
 {% compress css %}
 
 
-<link  rel="stylesheet" href="{% static "oscar/css/homepage-style.css" %}">
+<link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/css/homepage-style.less" %}">
 {% endcompress %}
 {% endblock %}
 
@@ -42,25 +44,116 @@
     {% block content %}
 	<main class="container-fluid main-section">
 	    <section class="introduction">
-		<div class="container">
-		    <div class="introduction-text">
-			<h1 class="page-title"> ESMEER </h1>
-			<!-- <h2 class="subtitle"> SHOP COLUMBUS </h2> -->
-			<h3 class="mission-statement">
-			    CONNECTING LOCAL BUSINESSES TO THE WORLD
-			</h3>
+		<div class="introduction-text">
+		    <div class="title-banner">
+			<img src="{% static "oscar/img/esmeer-banner.png"%}" class="img-responsive" alt="Esmeer Banner">
 		    </div>
 		    <div class="search-container">
 			<form class="form-horizontal search-form">
 			    <input type="search" class="input-lg search-bar" placeholder="Search for Products or Partners">
-			    <button class="btn btn-default btn-lg search-button" type="submit"> <span class="glyphicon glyphicon-search"></span> </button>
+			    <button class="btn btn-default btn-lg search-button" type="submit">
+				<span class="glyphicon glyphicon-search"></span>
+			    </button>
 			</form>
 		    </div>
-		    <button class="btn btn-default btn-lg learn-more-button"> LEARN MORE </button>
+		    <!-- <h2 class="subtitle"> SHOP COLUMBUS </h2> -->
+
 		</div>
+		<div class="row">
+		    <h3 class="mission-statement">
+			CONNECTING LOCAL BUSINESSES TO THE WORLD
+		    </h3>
+		</div>
+		<!-- <div class="search-container">
+		     <form class="form-horizontal search-form">
+		     <input type="search" class="input-lg search-bar" placeholder="Search for Products or Partners">
+		     <button class="btn btn-default btn-lg search-button" type="submit"> <span class="glyphicon glyphicon-search"></span> </button>
+		     </form>
+		     </div> -->
 	    </section>
 	    <section class="more-info">
-		<p> CHAOS </p>
+		    <div class="row text-center">
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-check info-icon" aria-hidden="true"></span>
+				<h3>
+				    Trusted Partners
+				</h3>
+				<p>
+				    Each Partner is evaluated before they join us,
+				    so that you can be confident you are dealing
+				    with a trustworthy and responsibility vendor.
+				</p>
+			    </div>
+			</div>
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-star info-icon" aria-hidden="true"></span>
+				<h3>
+				    Reviews
+				</h3>
+				<p>
+				    Each item is reviewed by others who have bought it,
+				    so that you can be assured of its quality, and to give a
+				    Partner feedback to improve their offerings.
+				</p>
+			    </div>
+			</div>
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-map-marker info-icon" aria-hidden="true"></span>
+				<h3>
+				    Culturally Focused
+				</h3>
+				<p>
+				    Each Partner is a brick-and-mortar store
+				    that represents the culture of their town.
+				    Get a feel for a city by browsing it's stores.
+				</p>
+			    </div>
+			</div>
+		    </div>
+		    <hr>
+		    <div class="row text-center">
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-cloud info-icon" aria-hidden="true"></span>
+				<h3>
+				    Reliable
+				</h3>
+				<p>
+				    Esmeer is hosted in a cloud-based platform, so it can respond
+				    to requests quickly and scale along with our partners' demands.
+				</p>
+			    </div>
+			</div>
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-transfer info-icon" aria-hidden="true"></span>
+				<h3>
+				    Paypal Secure
+				</h3>
+				<p>
+				    Transactions are carried out over Paypal,
+				    guaranteeing security and ease. An escrow system
+				    ensures that any disputes are resolved fairly.
+				</p>
+			    </div>
+			</div>
+			<div class="col-md-4">
+			    <div class="text-center">
+				<span class="glyphicon glyphicon-envelope info-icon" aria-hidden="true"></span>
+				<h3>
+				    Safe Shipping
+				</h3>
+				<p>
+				    The products are packaged and mailed by the same
+				    people who sell them, so you can be assured it is
+				    done with care and expertise.
+				</p>
+			    </div>
+			</div>
+		    </div>
 	    </section>
 	    <section class="partners">
 		<div class="container">
