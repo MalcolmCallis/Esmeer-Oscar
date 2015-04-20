@@ -140,7 +140,6 @@ location = lambda x: os.path.join(
 
 TEMPLATE_DIRS = (
 	location('templates'),
-	OSCAR_MAIN_TEMPLATE_DIR,
 )
 
 # Internationalization

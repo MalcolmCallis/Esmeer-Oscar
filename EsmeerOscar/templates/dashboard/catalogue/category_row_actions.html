@@ -17,7 +17,7 @@
                     {% trans "Add child category" %}
                 </a>
             </li>
-            <li{% if not record.has_children  %} class="disabled"{% endif %}>
+            <li{% if not record.has_children %} class="disabled"{% endif %}>
                 <a href="{% url 'dashboard:catalogue-category-detail-list' pk=record.pk %}">
                     {% trans "Edit children" %}
                 </a>
@@ -27,7 +27,7 @@
                     {% trans "View on site" %}
                 </a>
             </li>
-            <li{% if not record.is_root_child %} class="disabled" {% endif %} >
+            <li>
                 <a href="{% url 'dashboard:catalogue-category-delete' pk=record.id %}">
                     {% trans "Delete" %}
                 </a>
