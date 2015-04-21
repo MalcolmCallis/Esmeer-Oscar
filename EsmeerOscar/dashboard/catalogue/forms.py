@@ -39,7 +39,7 @@ CategoryForm = movenodeform_factory(Category, form=BaseCategoryForm, exclude=('p
 class ProductForm(CoreProductForm):
     class Meta:
         model = Product
-        fields = ['title', 'upc', 'description', 'weight', 'width', 'length', 'height']
+        fields = ['title', 'upc', 'description', 'shipping_price']
         widgets = {
             'structure': forms.HiddenInput()
         }

@@ -16,10 +16,7 @@ class Category(AbstractCategory):
         self.partner = Partner(name = self.name)"""
 
 class Product(AbstractProduct):
-	weight = models.DecimalField(blank=False,default=0.0,max_digits=5,decimal_places=2)
-	width = models.DecimalField(blank=False,default=0.0,max_digits=5,decimal_places=2)
-	height = models.DecimalField(blank=False,default=0.0,max_digits=5,decimal_places=2)
-	length = models.DecimalField(blank=False,default=0.0,max_digits=5,decimal_places=2)
+	shipping_price = models.DecimalField(max_digits=6, decimal_places=2, null=False)
 
 from oscar.apps.catalogue.models import *
 
