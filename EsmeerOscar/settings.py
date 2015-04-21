@@ -170,7 +170,7 @@ PAYPAL_CALLBACK_HTTPS = False
 PAYPAL_API_SIGNATURE = 'AjdGQ9pJRqcR0pPclFa0P8Dl3Y7qAppgL3vOuFE5umXR.aG76-4XzJ5c'
 
 from django.utils.translation import ugettext_lazy as _
-
+PAYPAL_BRAND_NAME = "Esmeer"
 PAYPAL_CURRENCY = "USD"
 OSCAR_SHOP_NAME = "Esmeer"
 OSCAR_FROM_EMAIL = "noreply@esmeer.com"
