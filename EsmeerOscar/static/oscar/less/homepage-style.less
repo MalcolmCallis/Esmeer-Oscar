@@ -7,6 +7,7 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
 @yellow: rgb(255, 255, 137);
 @lightyellow: rgb(255, 255, 212);
 @black: rgb(0, 0, 0);
+@lightgray: rgba(194,194,194,.35);
 
 @introductionBackground: @lightyellow;
 
@@ -19,10 +20,33 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
 @medium: 350px;
 @buttonIconSmall: 50px;
 
+.div-size(@screenSmall, @screenMedium, @screenLarge){
+    @media all and (min-width: 768px){
+	width: @screenSmall;
+    }
+    @media all and (min-width: 992px){
+	width: @screenMedium;
+    }
+    @media all and (min-width: 1200px){
+	width: @screenLarge;
+    }
+}
 
 // Mixins
 .clearMargins {
     margins: 0px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// General
+.title {
+    font-size: 4em;
+    text-align: center;
 }
 
 
@@ -39,81 +63,70 @@ body {
 
 .introduction {
     background-color: @introductionBackground;
-    height: @large;
+    min-height: @medium;
     /* overflow: visible; */
     padding-top: 100px;
-}
-
-.introduction-text {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: flex-end;
-    /* background-color: rgba(52,52,52, .3); */
-    /* background-color: rgba(0,0,0, .2); */
-}
-
-@media all and (max-width: 500px) {
-    .introduction-text {
-	/* On small screens, we are no longer
-    using row direction but column */
-	flex-direction: column;
-    }
-}
-
-
-.introduction-text{
-    > .title-banner {
-	width: @large;
-	> img {
-	    margin: 0px auto;
-	    display: block;
-	}	      
-    }
-    > .search-container  {
-	width: @large * 1.5;
-	> .search-form {
-	    width: @large * 1.25;
-	    margin: 0px auto;	  
-	    display: block;
-	    align-items: flex-end;
+    .introduction-text{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: flex-end;
+	@media  all and (max-width: 500px) {
+	    flex-direction: column;
 	}
-    } 
-}
-
-.mission-statement {
-    padding-bottom: 2em;
-    text-align: center;
-    font-size: 2em;
-}
-
-.search-bar {
-    width: @large;
-    background-color: white;
-    /* margin-right: 2px; */
-    border: 1px solid @main;
-    border-radius: 1px;
-    vertical-align: bottom; 
-}
-
-.search-button {
-    font-weight: bold;
-    width: @buttonIconSmall;
-    background-color: white;
-    /* border: 3px solid  #faebd7; */
-    border-radius: 1px;
-}
-
-.glyphicon-search {
-    .clearMargins;
+	.title-banner {
+	    .div-size(350px, 450px, 550px);
+	    margin-right: 10px;
+	    @media  all and (max-width: 992px) {
+		margin-bottom: 20px;
+	    }
+	    .title-banner-container {
+		img {
+		    display: block;
+		}
+	    }
+	}
+	.search-container  {
+	    .div-size(350px, 450px, 550px);
+	    margin-left: 10px;
+	    .search-form {
+		// margin: 0px auto;	  
+		display: block;
+		align-items: flex-end;
+		.search-bar {
+		    .div-size(275px, 375px, 475px);
+		    // width: @large;
+		    background-color: white;
+		    /* margin-right: 2px; */
+		    border: 1px solid @main;
+		    border-radius: 1px;
+		    vertical-align: bottom; 
+		}
+		> .search-button {
+		    font-weight: bold;
+		    width: @buttonIconSmall;
+		    background-color: white;
+		    /* border: 3px solid  #faebd7; */
+		    border-radius: 1px;
+		    > .glyphicon-search {
+			.clearMargins;
+		    }
+		}
+	    }
+	} 
+    }
+    div .mission-statement {
+	padding-bottom: 40px;
+	text-align: center;
+	font-size: 2em;
+    }
 }
 
 .more-info {	   
-    > div {
-	margin: 0px;
-	margin: 0 auto;
-	> div {
-	    margin: 0 25px;
+    .row {
+	.center-block();
+	div {
+	    margin: 0 15px;
 	}
     }
     > :first-child {
@@ -126,15 +139,31 @@ body {
     }
     > div .col-md-4 {
 	max-width: @medium;
+	> div .info-icon {
+	    font-size: 6em;
+	}
     }
 }
 
-
-.info-icon{
-    font-size: 6em;
-}
-
 .partners {
+    > div .partners-title {
+    /* margin-top: 1em; */
+    text-align: center;
+    font-weight: 900;
+    font-size:7em;
+    /* color: #faebd7; */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    }
+
+    > div .partner-images{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 260px; 
+    } 
     /* #343434 */
     /* background-color: rgb(51, 176, 202); */
     background-color: lighten(@lightblue, 20%);
@@ -149,80 +178,34 @@ body {
     min-height: 600px;
     min-width: 100%;
     overflow: visible;
-    background-color: lighten(@black, 98%);    
-}
-
-.partners-title {
-    /* margin-top: 1em; */
-    text-align: center;
-    font-weight: 900;
-    font-size:7em;
-    /* color: #faebd7; */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
-}
-
-.partner-images{
-    margin-top: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-    min-height: 260px; 
-}
-
-
-.user-info{
-    /* margin: 4em 3em 4em 3em; */
-    margin-top: 40px;
-    padding: 1em 0em 2em 0em;
-    align: center;
-    text-align: center;
-
-    vertical-align: middle;
-    display: block;
-    border-radius: 2px;
-}
-
-.signup-icon {
-    font-size: 10em;
-}
-
-
-.title {
-    font-size: 4em;
-    text-align: center;
-}
-
-.user-info-div{
-
-}
-
-.user-info-text {
-    width: 20em;
-    font-size: 1.5em;
-    margin: 4em auto 1em auto;
-    height: 5em;
-    display: block;
-}
-
-.contact {
-    min-height:20em;
-}
-
-/* img {
-   display: block;
-   align: center;
-   text-align: center;
-   margin: auto;
-   margin-left: auto;
-   margin-right: auto;
-   } */
-
-
-
-.user-info-button {
-    border-radius: 1px;
-    background-color: @lightblue;
-    color: white;
+    background-color: white;
+    div {
+	
+	div .user-info {
+	    border: 2px solid @blue;
+	    margin-top: 40px;
+	    padding: 1em 0em 2em 0em;
+	    align: center;
+	    text-align: center;
+	    vertical-align: middle;
+	    display: block;
+	    
+	    border-radius: 2px;
+	    .signup-icon {
+		font-size: 10em;
+	    }
+	     .user-info-text {
+		width: 20em;
+		font-size: 1.5em;
+		margin: 4em auto 1em auto;
+		height: 5em;
+		display: block;
+	    }
+	     .user-info-button {
+		border-radius: 1px;
+		background-color: @lightblue;
+		color: white;
+	    }
+	}
+    }
 }

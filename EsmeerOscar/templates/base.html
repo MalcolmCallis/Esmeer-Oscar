@@ -25,6 +25,10 @@
             <link rel="shortcut icon" href="{% static "img/esmeer-egg.png" %}" />
         {% endblock %}
 
+	{% block fonts %}
+	    <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+	{% endblock %}
+
         {% block mainstyles %}
             {% comment %}
             We use an inner block to work-around the fact that django-compressor doesn't work with
@@ -58,7 +62,7 @@
         {# Additional CSS - specific to certain pages #}
         {% block extrastyles %}{% endblock %}
 
-			{% block extrahead %}{% endblock %}
+	{% block extrahead %}{% endblock %}
 	{% block navbarstyle %}
 	     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}{% less "oscar/less/esmeerNavbar.less" %}">
 	    {% endblock %}
@@ -86,13 +90,14 @@
         {# Local scripts #}
         {% block scripts %}
             {% compress js %}
-            <!-- Twitter Bootstrap -->
-            <script type="text/javascript" src="{% static "oscar/js/bootstrap/bootstrap.min.js" %}"></script>
             <!-- Oscar -->
-            <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script>
+            <!-- <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script> -->
             {% endcompress %}
         {% endblock %}
 
+	{% block bootstrapScripts %}
+            <script type="text/javascript" src="{% static "oscar/js/bootstrap/bootstrap.min.js" %}"></script>
+	{% endblock %}
         {# Additional JS scripts #}
         {% block extrascripts %}{% endblock %}
 

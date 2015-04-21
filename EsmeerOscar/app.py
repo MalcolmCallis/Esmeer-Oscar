@@ -20,10 +20,10 @@ class MyShop(app.Shop):
     search_app = get_class('search.app', 'application')
     dashboard_app = get_class('dashboard.app', 'application')
     offer_app = get_class('offer.app', 'application')
-
+    partner_app = get_class('partner.app', 'application')
     password_reset_form = get_class('customer.forms', 'PasswordResetForm')
     set_password_form = get_class('customer.forms', 'SetPasswordForm')
-
+    
     def get_urls(self):
         urls = [
             url(r'^catalog/', include(self.catalogue_app.urls)),
@@ -33,7 +33,7 @@ class MyShop(app.Shop):
             url(r'^search/', include(self.search_app.urls)),
             url(r'^dashboard/', include(self.dashboard_app.urls)),
             url(r'^offers/', include(self.offer_app.urls)),
-
+            url(r'^partner/', include(self.partner_app.urls)),            
             # Password reset - as we're using Django's default view functions,
             # we can't namespace these urls as that prevents
             # the reverse function from working.

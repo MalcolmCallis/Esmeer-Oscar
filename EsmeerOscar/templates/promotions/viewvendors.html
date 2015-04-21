@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+
+{% load i18n compress %}
+{% load staticfiles %}
+{% load promotion_tags %}
+{% load less %}
+
+{% block title %} Esmeer - {{ vendor.name }} {% endblock %}
+
+{% block mainstyles %}
+{% endblock %}
+
+{% block extrastyles %}
+<link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/viewvendor.less" %}">
+{% endblock %}
+{% block layout %}
+{# Top-horizontal bar with account, notifictions, dashboard links #}
+{% include "partials/nav_accounts.html" %}
+{% block content %}
+<main class="container-fluid main-section">
+    <div class="vendor-info">
+	<section class="vendor-introduction">
+	    <img src="images/brigade.png" class="img-responsive vendor-image" alt="{{ vendor.name }} Image">
+	    <h1 class="vendor-title"> Brigade Clothing </h1>
+	</section>
+	<section class="vendor-description">
+	    <div class="vendor-description-div"><p> Brigade’s goal is to​ bring together a collection of men's and women's designers to function as a unit and to develop the knowledge for independent clothing design.​​
+		​
+		​Brigade staff has absolute knowledge of all our designer's history, fits, and fabrication and are pleased to answer any questions.</p></div>
+	</section>
+    </div>
+    <section class="vendor-listings">
+	<h2 class="product-listing-title title"> Product Listings </h2>
+	<button class="btn btn-default btn-lg button" type="submit"> BROWSE ALL LISTINGS </button>
+    </section>
+</main>
+{% endblock %}
+
+{% include "partials/footer.html" %}
+{% endblock %}
+
+{% block extrascripts %}
+{% include "partials/extrascripts.html" %}
+{{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+$(".learn-more-button").click(function() {
+$(".more-info").fadeToggle();
+});
+{% endblock %}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/homepage.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/skrollr.min.js"></script>
+    <script type="text/javascript">
+     var s = skrollr.init();
+    </script> -->
+
+

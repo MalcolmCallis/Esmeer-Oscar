@@ -7,12 +7,11 @@ Partner = get_model('partner', 'Partner')
 MAX_PARTNERS = 15
 
 class HomeView(CoreHomeView):
-
-        
     template_name = 'promotions/homepage.html'
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         num_partners = min(MAX_PARTNERS, Partner.objects.count())
-        context['partners'] = Partner.objects().all()[:num_partners]
+        context['partners'] = Partner.objects.all()[:num_partners]
         return context
     
+
