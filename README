@@ -76,11 +76,73 @@ When pulling master, it is now necessary to install certain packages to enable P
 NOTE -- There is currently an issue with product images that has not yet been addressed that is almost certainly related
 to this integration.
 
+Esmeer Gmail:
+Login: EsmeerTest@gmail.com
+Password: EsmeerFTW
+
 PAYPAL ACCOUNTS:
-Paypal Dev Account (and Gmail account):
+Paypal Dev Account:
 Login: EsmeerTest@gmail.com
 Password: EsmeerFTW!
 
 Paypal Test Buyer:
 Login: EsmeerTest-buyer@gmail.com
 Password: EsmeerFTW!
+
+DEFAULT PRODUCT UPDATE
+
+For the default product type to work, run: 
+
+	./manage.py loaddata EsmeerOscar/fixtures/productClass.json 
+	
+This just feeds the productClass database a default product type. You should only have to run this once, unless the ProductClass table is wiped. Then you have to run it again. 
+
+Setting up Solr on your machine
+
+Download and extract
+--------------------
+$ wget http://archive.apache.org/dist/lucene/solr/4.7.2/solr-4.7.2.tgz
+$ tar xzf solr-4.7.2.tgz
+
+Place this somewhere not in our Esmeer directory, as we don't want to commit the solr framework to GitHub.
+
+Install pysolr dependency
+
+$ pip install pysolr
+
+Start the server
+----------------
+$ cd solr-4.7.2/example/solr/collection1
+$ java -jar start.jar
+
+
+You’ll need to revise your schema. You can generate this from your application (once Haystack is installed and setup) by running 
+
+$ ./manage.py build_solr_schema.
+
+Take the output from that command and place it in
+
+solr-4.10.2/example/solr/collection1/conf/schema.xml.
+
+Then restart Solr
+
+
+Pull in Indexes
+---------------
+
+Now we need to build the index into our project.
+
+Make sure Solr and the Django Web Server is running and execute this
+
+To pull in indexes make sure your settings.py has the following line. This 
+will do it automatically. 
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor' 
+
+Alternatively you can run the following line to rebuild manually.
+
+$ python manage.py rebuild_index --noinput
+
+
+Everything should be good now. All changes to settings.py and search_indexes.py should be
+handled in the Solr branch or merged in master depending on when you read this
