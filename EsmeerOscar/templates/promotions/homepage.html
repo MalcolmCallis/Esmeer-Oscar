@@ -137,8 +137,9 @@
 		    </div>
 		    {% endif %}
 		    <div class="partner-images">
-		    {% endif %}
-			<img src="{{ partner.image.url }}" class="img-responsive" alt="{{ partner.name }} Image">
+			{% endif %}
+			<!--  -->
+			<a href="{% url 'partner:partnerView' partner.code %}"><img src="" class="img-responsive" alt="{{ partner.name }} Image"></a>
 
 		    {% empty %}
 		    {% endfor %}
@@ -151,7 +152,8 @@
 			    <span class="glyphicon glyphicon-user signup-icon" aria-hidden="true"></span>
 			    <h2 class="user-title title"> CUSTOMERS </h2>
 			    <p class="user-info-text"> Users have access to unique stores around the nation which reflect the city's local culture. </p>
-			    <button class="btn btn-default btn-lg user-info-button" type="submit"> SIGN UP </button>
+			    <form action="{% url 'customer:login' %}">
+				<button class="btn btn-default btn-lg user-info-button" type="submit"> SIGN UP </button></form>
 			</div>
 		    </div>
 		    <div class="col-lg-6 partner-info" >

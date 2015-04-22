@@ -1,17 +1,43 @@
+// Core variables and mixins
+@import "bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/mixins.less";
+@import "font-awesome/font-awesome.less"; // Replaced sprites with font-awesome
+@import "font-awesome/font-awesome-ie7.less";
+@import "bootstrap/buttons.less";
+@import "bootstrap/button-groups.less";
+@import "bootstrap/alerts.less";
+@import "homepage-style.less";
+
+// Changes for basket header
+.row-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media  all and (max-width: 750px) {
+	    flex-direction: column;
+	}
+}
+
+.page_inner {
+    height: 100px;
+    margin-top: 20px
+}
+
+.basket-mini {
+    display: inline;
+    div {
+	display: block;
+	margin-bottom: 10px;
+    }
+    
+}
+
 body {
-    margin: 0px;
-    padding: 0px;
     font-family: 'Lato', sans-serif;
 }
 
-.main-section{
-    margin: 0px;
-    padding: 0px;
-}
-
 .vendor-info {
-    background: rgba(177, 176, 172, .2);
-    margin: 0px;
+    background: lighten(@lightblue, 20%);
 }
 
 
@@ -58,18 +84,40 @@ body {
 }
 
 .vendor-listings {
-    background: rgba(72, 76, 83, .2);
-    margin: 0px;
+    background: white;
 }
 
 
 .button {
     margin: 0 auto;
     display: block;
-    background: rgba(177, 128, 42, 1);
+}
+
+.individual-product {
+    padding: 20px;
+    width: 100%;
 }
 
 .product-listing-title {
     margin: 0px;
     padding: 20px;
 }
+
+.product-image {
+    .div-size(300px, 400px, 500px);
+}
+
+.row1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media  all and (max-width: 750px) {
+	    flex-direction: column;
+	}
+}
+
+.price_color, .instock {
+    color: #46a546;
+}
+

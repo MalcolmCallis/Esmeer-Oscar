@@ -90,14 +90,12 @@
         {# Local scripts #}
         {% block scripts %}
             {% compress js %}
+	    <script type="text/javascript" src="{% static "oscar/js/bootstrap/bootstrap.min.js" %}"></script>
             <!-- Oscar -->
-            <!-- <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script> -->
+            <script src="{% static "oscar/js/oscar/ui.js" %}" type="text/javascript" charset="utf-8"></script>
             {% endcompress %}
         {% endblock %}
 
-	{% block bootstrapScripts %}
-            <script type="text/javascript" src="{% static "oscar/js/bootstrap/bootstrap.min.js" %}"></script>
-	{% endblock %}
         {# Additional JS scripts #}
         {% block extrascripts %}{% endblock %}
 
