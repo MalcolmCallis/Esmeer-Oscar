@@ -1,0 +1,9 @@
+{% extends 'oscar/basket/partials/basket_content.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block formactions %}
+<div class="form-actions">
+    <a href="{% url 'paypal-redirect' %}" class="pull-right btn btn-large btn-primary">{% trans "Proceed to checkout" %}</a>
+</div>
+{% endblock %}

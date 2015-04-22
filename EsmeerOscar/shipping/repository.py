@@ -1,5 +1,8 @@
 from oscar.apps.shipping import repository
-from . import methods
+from EsmeerOscar.shipping import methods
 
 class Repository(repository.Repository):
-    methods = (methods.Standard(), methods.Express())
+	
+	def get_available_shipping_methods(self,basket,user=None,shipping_addr=None,request=None,**kwargs):
+		shippingMethods = (methods.VendorShipping(),)
+		return shippingMethods

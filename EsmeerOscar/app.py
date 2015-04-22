@@ -30,7 +30,6 @@ class MyShop(app.Shop):
             url(r'^basket/', include(self.basket_app.urls)),
             url(r'^checkout/', include(self.checkout_app.urls)),
             url(r'^accounts/', include(self.customer_app.urls)),
-            url(r'^search/', include(self.search_app.urls)),
             url(r'^dashboard/', include(self.dashboard_app.urls)),
             url(r'^offers/', include(self.offer_app.urls)),
             url(r'^partner/', include(self.partner_app.urls)),            
