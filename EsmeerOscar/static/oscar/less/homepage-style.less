@@ -39,6 +39,29 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
     margins: 0px;
 }
 
+.row-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media  all and (max-width: 750px) {
+	    flex-direction: column;
+	}
+}
+
+.page_inner {
+    height: 100px;
+    margin-top: 20px
+}
+
+.basket-mini {
+    display: inline;
+    div {
+	display: block;
+	margin-bottom: 10px;
+    }
+    
+}
+
 .center-block {
   display: block;
   margin-left: auto;

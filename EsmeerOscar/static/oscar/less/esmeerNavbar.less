@@ -5,6 +5,10 @@
 	border-radius: 1px;
     }
     margin-bottom: 0px;
+    .container-fluid {
+	max-width: 100%;
+    }
+    
 }
 
 .navbar-brand{
@@ -22,7 +26,12 @@
 .navbar-collapse {
     .navbar-form {
 	.div-size(200px, 200px, 300px);
-	.form-control {
+	#id_q {
+	    min-height: 20px!important;
+	    height: 66%;
+	    padding: 6px 12px;
+	    line-height: 20px;
+	    margin-bottom: 0px;
 	    @media all and (min-width: 200px){
 		width: 200px;
 		margin-right: 10px;

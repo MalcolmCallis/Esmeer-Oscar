@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'static_precompiler',
+    # 'static_precompiler',
     'compressor',
     'paypal',
 ] + get_core_apps(['EsmeerOscar.dashboard.partners',
@@ -130,7 +130,6 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader',
-    # 'django.template.loaders.app_directories.load_template_source',
 )
 
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
@@ -139,7 +138,7 @@ location = lambda x: os.path.join(
 	os.path.dirname(os.path.realpath(__file__)), x)
 
 TEMPLATE_DIRS = (
-	location('templates'),
+	 location('templates'),
 )
 
 # Internationalization
