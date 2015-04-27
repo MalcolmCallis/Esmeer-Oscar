@@ -1,48 +1,61 @@
-@import "homepage-style.less";
+.div-size(@screenSmall, @screenMedium, @screenLarge){
+    @media all and (min-width: 768px){
+	width: @screenSmall;
+    }
+    @media all and (min-width: 992px){
+	width: @screenMedium;
+    }
+    @media all and (min-width: 1200px){
+	width: @screenLarge;
+    }
+}
 
 .navbar {
     form * {
-	border-radius: 1px;
+	border-radius: 1px!important;
     }
-    margin-bottom: 0px;
+    margin-bottom: 0px!important;
     .container-fluid {
-	max-width: 100%;
+	max-width: 100%!important;
     }
     
 }
 
 .navbar-brand{
-    margin: auto;
+    margin: auto!important;
     /* auto 0px auto 0px; */
-    padding: 0px 15px 0px 15px;
+    padding: 0px 15px 0px 15px!important;
 }
 
 
 .banner-image {
-    height: 40px;
-    margin-top: 5px;
+    height: 40px!important;
+    margin-top: 5px!important;
 }
 
 .navbar-collapse {
     .navbar-form {
 	.div-size(200px, 200px, 300px);
+	padding: 0px;
+
 	#id_q {
 	    min-height: 20px!important;
-	    height: 66%;
-	    padding: 6px 12px;
-	    line-height: 20px;
-	    margin-bottom: 0px;
+	    height: 66%!important;
+	    padding: 6px 12px!important;
+	    line-height: 20px!important;
+	    margin-bottom: 0px!important;
+	    margin-right: 5px!important;
 	    @media all and (min-width: 200px){
-		width: 200px;
-		margin-right: 10px;
-		display: inline;
+		width: 200px!important;
+		margin-right: 5px!important;
+		display: inline!important;
 	    }
 	    .div-size(75px, 75px, 175px);
 	}
 	.btn {
 	    @media all and (min-width: 200px){
-		width: 75px;
-		display: inline;
+		width: 75px!important;
+		display: inline!important;
 	    }
 	    .div-size(65px, 65px, 65px);
 	}

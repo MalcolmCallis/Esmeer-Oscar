@@ -138,7 +138,7 @@ location = lambda x: os.path.join(
 	os.path.dirname(os.path.realpath(__file__)), x)
 
 TEMPLATE_DIRS = (
-	 location('templates'),
+    location('templates'),
 )
 
 # Internationalization
@@ -321,3 +321,4 @@ OSCAR_DASHBOARD_NAVIGATION.append(
             },
         ]
     })
+

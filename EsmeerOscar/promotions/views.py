@@ -15,3 +15,6 @@ class HomeView(CoreHomeView):
         return context
     
 
+class ContactUsView(TemplateView):
+    template_name = 'promotions/contactus.html'
+    

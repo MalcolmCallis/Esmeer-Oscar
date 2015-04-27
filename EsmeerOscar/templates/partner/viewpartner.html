@@ -1,0 +1,104 @@
+{% extends "base.html" %} 
+
+{% load i18n compress %}
+{% load staticfiles %}
+{% load basket_tags %}
+{% load promotion_tags %}
+{% load category_tags %}
+{% load product_tags %}
+
+{% load reviews_tags %}
+{% load thumbnail %}
+{% load display_tags %}
+{% load less %}
+
+{% block title %} Esmeer - {{ partner.name }} {% endblock %}
+
+
+{% block extrastyles %}
+<!-- <link  rel="stylesheet" href="{% static "oscar/css/styles.css" %}"> -->
+<link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/viewvendor.less" %}">
+<link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/homepage-style.less" %}">
+
+
+{% endblock %}
+{% block layout %}
+{# Top-horizontal bar with account, notifictions, dashboard links #}
+{% include "partials/nav_accounts.html" %}
+{% block content %}
+<header class="header container">
+        <div class="page_inner">
+            <div class="row-fluid">
+                {% include "partials/brand.html" %}
+                {# Mini-basket wrapped in a block so some templates can now display it #}
+                {% block mini_basket %}{% include "partials/mini_basket.html" %}{% endblock %}
+            </div>
+        </div>
+</header>
+
+<main class="main-section">
+    <div class="container vendor-info">
+	<section class="vendor-introduction">
+	    {% if partner.images %}
+	    <img src="{{STATIC_URL}} {% url 'partner.images[0]' %}" class="img-responsive vendor-image" alt="{{ partner.name }} Image">
+	    {% endif %}
+	    <h1 class="vendor-title"> {{ partner.name }} </h1>
+	</section>
+	<section class="vendor-description">
+	    <div class="vendor-description-div"><p> {{ partner.description }} </p></div>
+	</section>
+    </div>
+    <section class="container vendor-listings">
+	<h2 class="product-listing-title title"> Product Listings </h2>
+	{% if products %}
+	<div class="row-fluid container">
+	    {% for product in products %}
+	    <hr>
+	    <div class="individual-product {% if forloop.counter|divisibleby:1 %} evenrow {% endif %}">
+		
+		<div class="row1 ">
+		{% with image=product.primary_image %}
+                    {% thumbnail image.original "x155" upscale=False as thumb %}
+                    <a href="{{ product.get_absolute_url }}"><img class="product-image" src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
+                    {% endthumbnail %}
+                    {% endwith %}
+		    <div>
+			<a href="{{ product.get_absolute_url }}"><h3 class="product-title" > {{product.title }}</h3></a>
+			<p> Description: {{product.description|truncatewords:20 }} </p>
+		    </div>
+		    <div>
+			<div class="product_price">
+                {% include "catalogue/partials/stock_record.html" %}
+                {% if not product.is_parent %}
+                    {% include "catalogue/partials/add_to_basket_form_compact.html" %}
+                {% endif %}
+            </div>
+		    </div>
+		</div>
+	    </div>
+	    	
+	    {% endfor %}
+	    	</div>
+	{% else %}
+	<p class="nonefound">{% trans "No products found." %}</p>
+	{% endif %}
+    </section>
+</main>
+{% endblock %}
+
+{% include "partials/footer.html" %}
+{% endblock %}
+
+{% block extrascripts %}
+{% include "partials/extrascripts.html" %}
+{{ block.super }}
+{% endblock %}
+
+{% block onbodyload %}
+$(".learn-more-button").click(function() {
+$(".more-info").fadeToggle();
+});
+{% endblock %}
+
+
+

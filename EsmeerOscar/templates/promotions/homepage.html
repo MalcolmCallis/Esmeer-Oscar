@@ -4,15 +4,18 @@
 {% load staticfiles %}
 {% load promotion_tags %}
 {% load less %}
+{% load app_filters %}
 
 {% block title %} Esmeer {% endblock %}
 
-
 {% block mainstyles %}
-{% endblock %}
-			
+<link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />    
+ {% endblock %}
+
 {% block extrastyles %}
 <link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/homepage-style.less" %}">
+ <link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}"> 
 {% endblock %}
     
 {% block layout %}
@@ -28,8 +31,8 @@
 			</div>
 		    </div>
 		    <div class="search-container">
-			<form class="form-horizontal search-form">
-			    <input type="search" class="input-lg search-bar" placeholder="Search Products or Partners">
+			<form  method="get" action="{% url 'search:search' %}" class="form-horizontal search-form">
+			    {{ search_form.q|addcss:"input-lg form-control search-bar"}}
 			    <button class="btn btn-default btn-lg search-button" type="submit">
 				<span class="glyphicon glyphicon-search"></span>
 			    </button>
@@ -163,7 +166,8 @@
 			    <div class="user-info-div">
 				<p  class="user-info-text"> Businesses have access to consumers outside of their local market. </p>
 			    </div>
-   			    <button class="btn btn-default btn-lg user-info-button" type="submit"> GET IN TOUCH </button>
+			    <form action="{% url 'promotions:contactus' %}">
+				<button class="btn btn-default btn-lg user-info-button" type="submit"> CONTACT US </button></form>
 			</div>
 		    </div>
 		</div>

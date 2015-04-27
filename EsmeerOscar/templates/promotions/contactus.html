@@ -1,0 +1,63 @@
+{% extends "base.html" %} 
+
+{% load i18n compress %}
+{% load staticfiles %}
+{% load promotion_tags %}
+{% load less %}
+
+{% block title %} Esmeer {% endblock %}
+
+{% block mainstyles %}
+<link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />    
+ {% endblock %}
+
+{% block extrastyles %}
+
+<link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}">
+<link rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/contactus-style.less" %}">
+ {% endblock %}
+
+ {% block layout %}
+{# Top-horizontal bar with account, notifictions, dashboard links #}
+    {% include "partials/nav_accounts.html" %}
+    {% block content %}
+ <main class="main-section">
+     <div class="container-fluid contact-container">
+	 <h1 class="title"> CONTACT US </h1>
+	 <div><p class="contact-text"> Contact us to talk about becoming a Partner, or if there are any issues with a transaction that we can resolve. </p></div>
+	 <hr>
+	 <div class="row">
+	     <div class="col-md-6">
+		 <div class="text-center">
+		     <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+		     <h2> PHONE </h2>
+		     <p> Chris Reynolds: (517) 755-8676 </p>
+		 </div>
+	     </div>
+	     <div class="col-md-6">
+		 <div class="text-center">
+		     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+		     <h2> EMAIL </h2>
+		     <p> Rachel Nelson: nelson.1226@osu.edu</p>
+		     <p> Chris Reynolds: reynolds.817@osu.edu</p>
+		 </div>
+	     </div>
+	 </div>
+     </div>
+	</main>
+	{% endblock %}
+
+	{% include "partials/footer.html" %}
+	{% endblock %}
+
+	{% block extrascripts %}
+    {% include "partials/extrascripts.html" %}
+    {{ block.super }}
+{% endblock %}
+    
+	{% block onbodyload %}
+	    $(".learn-more-button").click(function() {
+	$(".more-info").fadeToggle();
+	});
+	{% endblock %}
