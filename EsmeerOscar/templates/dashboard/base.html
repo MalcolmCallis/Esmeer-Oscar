@@ -31,23 +31,31 @@
             expect it to compress CSS files added in child templates.
             {% endcomment %}
             {% block styles %}
-                {% comment %}
-                If you are developing Oscar's CSS, or overriding Oscar's CSS
-                files in your project, then set USE_LESS = True in your
-                settings file.  You will also need to ensure that the 'lessc'
-                executable is available and you have COMPRESS_PRECOMPILERS specified
-                correctly.
-                {% endcomment %}
-                {% compress css %}
-                        <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
-                        <link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />
-                {% endcompress %}
+            {% comment %}
+            If you are developing Oscar's CSS, or overriding Oscar's CSS
+            files in your project, then set USE_LESS = True in your
+            settings file.  You will also need to ensure that the 'lessc'
+            executable is available and you have COMPRESS_PRECOMPILERS specified
+            correctly.
+            {% endcomment %}
+            {% compress css %}
+            <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
+            <link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />
+            {% endcompress %}
+	    {% endblock %}
+	    
             {% endblock %}
-        {% endblock %}
 
-        {# Additional CSS - specific to certain pages #}
+            {# Additional CSS - specific to certain pages #}
         {% block extrastyles %}{% endblock %}
-
+	    {% block navbarFix %}
+	    <!-- This is a fix to the mobile navbar -->
+	    <style>
+	     .in {
+		 height:auto!important;
+	     }
+	    </style>
+	    {% endblock %}
         {% block extrahead %}{% endblock %}
     </head>
 
