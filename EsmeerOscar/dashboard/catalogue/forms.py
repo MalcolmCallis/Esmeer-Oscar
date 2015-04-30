@@ -15,6 +15,7 @@ from oscar.apps.dashboard.catalogue.forms import ProductForm as CoreProductForm
 Category = get_model('catalogue', 'Category')
 Product = get_model('catalogue', 'Product')
 StockRecord = get_model('partner', 'StockRecord')
+ProductCategory = get_model('catalogue', 'ProductCategory')
 Partner = get_model('partner', 'Partner')
 
 class StockRecordForm(forms.ModelForm):
@@ -121,3 +122,53 @@ class ProductForm(CoreProductForm):
         widgets = {
             'structure': forms.HiddenInput()
         }
+
+class ProductCategoryForm(forms.ModelForm):
+
+    def __init__(self,user, *args, **kwargs): 
+
+        super(ProductCategoryForm, self).__init__(*args, **kwargs)
+
+        self.fields['category'].queryset = ProductCategory.objects.filter(category = 2349023423)
+
+    class Meta:
+        model = ProductCategory
+        fields = ('category', )
+
+
+BaseProductCategoryFormSet = inlineformset_factory(
+    Product, ProductCategory, form=ProductCategoryForm, extra=1,
+    can_delete=True)
+
+
+class ProductCategoryFormSet(BaseProductCategoryFormSet):
+
+    def __init__(self, product_class, user, *args, **kwargs):
+        # This function just exists to drop the extra arguments
+        self.user = user
+        super(ProductCategoryFormSet, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        if not self.instance.is_child and self.get_num_categories() == 0:
+            raise forms.ValidationError(
+                _("Stand-alone and parent products "
+                  "must have at least one category"))
+        if self.instance.is_child and self.get_num_categories() > 0:
+            raise forms.ValidationError(
+                _("A child product should not have categories"))
+
+    def get_num_categories(self):
+        num_categories = 0
+        for i in range(0, self.total_form_count()):
+            form = self.forms[i]
+            if (hasattr(form, 'cleaned_data')
+                    and form.cleaned_data.get('category', None)
+                    and not form.cleaned_data.get('DELETE', False)):
+                num_categories += 1
+        return num_categories
+
+    def _construct_form(self, i, **kwargs):
+        kwargs['user'] = self.user
+        return super(ProductCategoryFormSet, self)._construct_form(
+                i, **kwargs)
+
