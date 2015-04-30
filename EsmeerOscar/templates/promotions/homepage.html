@@ -142,7 +142,7 @@
 		    <div class="partner-images">
 			{% endif %}
 			<!--  -->
-			<a href="{% url 'partner:partnerView' partner.code %}"><img src="" class="img-responsive" alt="{{ partner.name }} Image"></a>
+			<a href="{% url 'partner:partnerView' partner.code %}"><img src="{% if partner.image %} {{ partner.image.url }} {% endif %}" class="img-responsive partner-image" alt="{{ partner.name }} Image"></a>
 
 		    {% empty %}
 		    {% endfor %}
