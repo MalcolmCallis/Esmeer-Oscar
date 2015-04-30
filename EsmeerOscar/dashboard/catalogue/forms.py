@@ -128,8 +128,23 @@ class ProductCategoryForm(forms.ModelForm):
     def __init__(self,user, *args, **kwargs): 
 
         super(ProductCategoryForm, self).__init__(*args, **kwargs)
+        self.user = user
+        
+        # Get a set of categories that 
+        categoriesLinkedToCurrentUser = []
 
-        self.fields['category'].queryset = ProductCategory.objects.filter(category = 2349023423)
+        for currentPartner in Partner.objects.all():
+            for user in currentPartner.users.get_queryset():
+                if user == self.user:
+                    categoriesLinkedToCurrentUser.append(Category.objects.get(partner = currentPartner).pk)
+                    # and then get all of its descendents 
+                    for currentDescendent in Category.objects.get(partner = currentPartner).get_descendants():
+                        categoriesLinkedToCurrentUser.append(currentDescendent.pk)
+
+
+        if not self.user.is_superuser:
+
+            self.fields['category'].queryset = Category.objects.filter(pk__in=categoriesLinkedToCurrentUser)
 
     class Meta:
         model = ProductCategory
