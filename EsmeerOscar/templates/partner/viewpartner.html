@@ -39,8 +39,10 @@
 <main class="main-section">
     <div class="container vendor-info">
 	<section class="vendor-introduction">
-	    {% if partner.images %}
-	    <img src="{{STATIC_URL}} {% url 'partner.images[0]' %}" class="img-responsive vendor-image" alt="{{ partner.name }} Image">
+	    {% if partner.image %}
+	    {% thumbnail partner.image "x200" upscale=False as thumb %}
+	    <img src="{{ thumb.url }}" class="img-responsive vendor-image" alt="{{ partner.name }} Image">
+	    {% endthumbnail %}
 	    {% endif %}
 	    <h1 class="vendor-title"> {{ partner.name }} </h1>
 	</section>
@@ -58,11 +60,11 @@
 		
 		<div class="row1 ">
 		{% with image=product.primary_image %}
-                    {% thumbnail image.original "x155" upscale=False as thumb %}
+                    {% thumbnail image.original "155" upscale=True as thumb %}
                     <a href="{{ product.get_absolute_url }}"><img class="product-image" src="{{ thumb.url }}" alt="{{ product.get_title }}" class="thumbnail"></a>
                     {% endthumbnail %}
                     {% endwith %}
-		    <div>
+		    <div class="product-info">
 			<a href="{{ product.get_absolute_url }}"><h3 class="product-title" > {{product.title }}</h3></a>
 			<p> Description: {{product.description|truncatewords:20 }} </p>
 		    </div>
