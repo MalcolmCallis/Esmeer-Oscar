@@ -38,15 +38,16 @@ class StockRecordForm(forms.ModelForm):
             self.fields['price_excl_tax'].required = True
             self.fields['num_in_stock'].required = True
 
-        partnerQuery = []
+        if not self.user.is_superuser: 
+            
+            partnerQuery = []
 
-        for part in Partner.objects.all():
-            for user in part.users.get_queryset():
-                if user == self.user:
-                    partnerQuery.append(part.name)
+            for part in Partner.objects.all():
+                for user in part.users.get_queryset():
+                    if user == self.user:
+                        partnerQuery.append(part.name)
 
-
-        self.fields['partner'].queryset = Partner.objects.filter(name__in=partnerQuery) 
+            self.fields['partner'].queryset = Partner.objects.filter(name__in=partnerQuery) 
 
     class Meta:
         model = StockRecord
