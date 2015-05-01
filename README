@@ -161,3 +161,7 @@ $ python manage.py rebuild_index --noinput
 Everything should be good now. All changes to settings.py and search_indexes.py should be
 handled in the Solr branch or merged in master depending on when you read this
 
+
+
+TESTING FOR PRODUCTION SITE AS OF 5/1
+https://docs.google.com/document/d/1o37fnRXDkH6sWGe6fithe5qz0YKgdppS3_mt1avDT98/edit?usp=sharing
