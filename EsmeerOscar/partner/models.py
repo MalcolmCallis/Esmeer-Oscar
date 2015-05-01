@@ -15,7 +15,7 @@ from oscar.apps.catalogue.categories import create_from_breadcrumbs
 class Partner(AbstractPartner):
     image = models.ImageField(_('Image'), upload_to=settings.OSCAR_IMAGE_FOLDER, blank=True,
                               null=True, max_length=255)
-
+    description = models.TextField(null = False, blank = False)
     def save(self, *args, **kwargs):
 
         super(Partner, self).save(*args, **kwargs)

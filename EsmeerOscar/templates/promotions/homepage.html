@@ -8,14 +8,12 @@
 
 {% block title %} Esmeer {% endblock %}
 
-{% block mainstyles %}
-<link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
-<link rel="stylesheet" type="text/css" href="{% static "oscar/css/responsive.css" %}" />    
- {% endblock %}
 
 {% block extrastyles %}
 <link  rel="stylesheet" href="{{ STATIC_URL }}{% less "oscar/less/homepage-style.less" %}">
- <link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}"> 
+<!-- <link  rel="stylesheet" href="{% static "oscar/css/bootstrap.min.css" %}"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 {% endblock %}
     
 {% block layout %}

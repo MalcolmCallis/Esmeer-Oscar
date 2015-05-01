@@ -23,7 +23,7 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
 //     max-width: none;
 // }
 .div-size(@screenSmall, @screenMedium, @screenLarge){
-    @media all and (min-width: 768px){
+    @media all and (min-width: 300px){
 	width: @screenSmall;
     }
     @media all and (min-width: 992px){
@@ -33,6 +33,9 @@ http://paletton.com/#uid=73m0u0kowJHdUTdjFOftJF9B6u3 */
 	width: @screenLarge;
     }
 }
+
+
+
 
 // Mixins
 .clearMargins {
@@ -79,9 +82,10 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Lato', sans-serif;
+    overflow: hidden;
 }
 
-.main-section {
+.main-section{
     margin: 0px;	
     padding: 0px;
 }
@@ -95,7 +99,7 @@ body {
 }
 
 .navbar-inner {
-    height:55px!important;
+    min-height:55px!important;
 }
 
 .navbar-form {
@@ -121,14 +125,21 @@ body {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: flex-end;
-	@media  all and (max-width: 500px) {
+	@media  all and (max-width: 900px) {
 	    flex-direction: column;
+	    align-items: center;
+	    align-items: center;
 	}
 	.title-banner {
 	    .div-size(350px, 450px, 550px);
 	    margin-right: 10px;
 	    @media  all and (max-width: 992px) {
 		margin-bottom: 20px;
+		
+	    }
+	    @media  all and (max-width: 900px) {
+		margin-right: 0px;
+		
 	    }
 	    .title-banner-container {
 		img {
@@ -139,13 +150,16 @@ body {
 	.search-container  {
 	    .div-size(350px, 450px, 550px);
 	    margin-left: 10px;
+	    @media  all and (max-width: 700px) {
+		margin: auto;
+	    }
 	    .search-form {
 		// margin: 0px auto;	  
 		display: block;
 		align-items: flex-end;
 		margin: 0px!important;
 		.search-bar {
-		    .div-size(275px, 375px, 475px);
+		    .div-size(295px, 375px, 475px);
 		    // width: @large;
 		    background-color: white;
 		    /* margin-right: 2px; */
@@ -198,13 +212,16 @@ body {
 
 .partners {
     > div .partners-title {
-    /* margin-top: 1em; */
-    text-align: center;
-    font-weight: 900;
-    font-size:7em;
-    /* color: #faebd7; */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+	/* margin-top: 1em; */
+	text-align: center;
+	font-weight: 900;
+	font-size:7em;
+	/* color: #faebd7; */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+	@media  all and (max-width: 700px) {
+	    font-size:4em;
+	}
     }
 
     > div .partner-images{
