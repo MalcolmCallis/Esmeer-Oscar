@@ -96,7 +96,7 @@ LESS integration steps:
 
 2) RUN as ROOT: sudo apt-get install -y nodejs		(Install Nodejs)
 
-2.1) sudo apt-get install npm & npm install lessc
+2.1) sudo apt-get install npm & npm install -g less
 
 3) pip install django-static-precompiler (Make sure you are working on your virtualenv)
 
