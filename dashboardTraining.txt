@@ -1,0 +1,27 @@
+This file explains how to do basic operations on the dashboard. It is not comprehensive, but is meant to explain the 
+non-intuitive parts of the dashboard.
+
+Creating a partner:
+
+The page to manage partners can be found under the Fulfillment -> Partners tab.
+To create a partner, click the create new partner button.
+Then, fill in the name, image (which is the logo of the partner), description, and address of the partner.
+The fields on the address that are mandatory are address 1, city, state, zip code, and country.
+Then click Save. The partner should be created. 
+
+Linking a user to a partner:
+
+Once the partner is created, they will appear in the table on the partners page in the dashboard.
+To edit a partner's details, go to the far left cell in the partners' row and select the appropriate option in the button menu.
+Once editing a partner, it is easy to create a new user and add it to the partner or add an existing user.
+
+To add a product:
+
+In order to add a product, there has to be at least one partner created.
+Go to the Catalog -> Partners tab in the dashboard, and select create new product.
+
+
+Explanation of Categories:
+Categories are a way that Esmeer divides products into similar product types, such as Hats, T-shirts, and spaceships.
+Each Partner automatically has a Category created for them, and they can create new Categories off of their category.
+The categories are seen on the site by the customer as ways to visually search for products.
