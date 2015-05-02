@@ -161,6 +161,23 @@ $ python manage.py rebuild_index --noinput
 Everything should be good now. All changes to settings.py and search_indexes.py should be
 handled in the Solr branch or merged in master depending on when you read this
 
+Deployment with Vagrant 
+
+After installing Vagrant you will need to install the aws-pluggin 
+Then with the virtualbox image you will be able to run vagrant up. 
+Here is a link if you have questions: http://www.iheavy.com/2014/01/16/how-to-deploy-on-amazon-ec2-with-vagrant/ 
+**Keep in mind this does not work with the free instance found that out the hard way. 
+
+So Deployment to the free tier was done by the following steps:
+	On your local machine spin up the VM for deployment:
+	Install all the necessary packages according to this read me. 
+	Then just copy over the /var/www/ directory to /var/www/ on the server and change the permissions
+	After this is done make sure your apache configuration is configure correctly
+	An example of this is on the current production machine or the vm /var/apache2/sites-enabled/000-default
+	You can only access the server if an account has been created for you or using AWS public key given to you. 
+	
+
+	
 
 
 TESTING FOR PRODUCTION SITE AS OF 5/1
